@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "804215194336",
+    "project_id": "planetsort",
+    "storage_bucket": "planetsort.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804215194336:android:76a7b2b21ab9780475c685",
+        "android_client_info": {
+          "package_name": "com.example.planetsort"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLbXABsLZ6uLZ8kVCWQUQkf2zooXbrYmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
