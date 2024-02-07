@@ -1,12 +1,15 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:io';
-import 'package:image_picker/image_picker.dart';
+
+import 'package:flutter/material.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
-import 'widgets/login_page.dart';
+import 'package:image_picker/image_picker.dart';
+
 import 'firebase_options.dart';
+import 'widgets/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,7 +66,7 @@ class _HomePageState extends State<HomePage> {
 
     if (_base64Image != null) {
       var payload = jsonEncode({
-        "model": "gpt-4-vision-preview",
+        "model": "gpt-4-1106-vision-preview",
         "messages": [
           {
             "role": "user",
