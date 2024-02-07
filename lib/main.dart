@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> sendImageToChatGPTVision() async {
-    const String apiKey = "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";
+    const String apiKey = "";
     const String url = "https://api.openai.com/v1/chat/completions";
 
     var headers = {
