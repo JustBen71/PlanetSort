@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:planetsort/main.dart';
 
 import 'package:planetsort/pages/signup_page.dart';
 
@@ -25,7 +26,12 @@ class _LoginPageState extends State<LoginPage> {
         email: _email,
         password: _password,
       );
-      if (user.user != null) {}
+      if (user.user != null && mounted) {
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const HomePage()),
+          (Route<dynamic> route) => false,
+        );
+      }
     } catch (e) {
       print(e);
     }
