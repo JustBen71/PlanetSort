@@ -1,17 +1,15 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+
 import 'package:planetsort/object/BottomAppBarItem.dart';
 import 'package:planetsort/utils/constant.dart';
-
 
 class PlanetSortCustomNavBar extends StatelessWidget {
   final List<BottomAppBarItem> items;
   final int currentIndex;
   final ValueChanged<int> onTap;
 
-  PlanetSortCustomNavBar({
+  const PlanetSortCustomNavBar({
+    super.key,
     required this.items,
     required this.currentIndex,
     required this.onTap,
@@ -31,14 +29,10 @@ class PlanetSortCustomNavBar extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Icon(items[index].icon,
-                    color: index == currentIndex
-                        ? GREEN
-                        : DARK),
+                    color: index == currentIndex ? GREEN : DARK),
                 Text(items[index].label,
                     style: TextStyle(
-                      color: index == currentIndex
-                          ? GREEN
-                          : DARK,
+                      color: index == currentIndex ? GREEN : DARK,
                     )),
               ],
             ),

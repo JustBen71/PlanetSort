@@ -8,8 +8,8 @@ class TitleText extends StatelessWidget {
   final FontWeight fontWeight;
   final String fontFamily;
 
-  TitleText(
-  {
+  const TitleText({
+    super.key,
     required this.data,
     this.color = BEIGE,
     this.fontSize = 14,
