@@ -24,11 +24,11 @@ class _TemplatePage extends State<TemplatePage> {
   Widget build(BuildContext context) {
     int currentIndex = 0;
     return Scaffold(
-        backgroundColor: GREEN,
+        backgroundColor: green,
         appBar: AppBar(
-          backgroundColor: GREEN,
+          backgroundColor: green,
           title: Center(
-              child: TitleText(data: widget.title, color: BEIGE, fontSize: 50)),
+              child: TitleText(data: widget.title, color: beige, fontSize: 50)),
         ),
         body: Center(child: widget.column),
         bottomNavigationBar: PlanetSortCustomNavBar(

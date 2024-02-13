@@ -11,7 +11,7 @@ class TitleText extends StatelessWidget {
   const TitleText({
     super.key,
     required this.data,
-    this.color = BEIGE,
+    this.color = beige,
     this.fontSize = 14,
     this.fontWeight = FontWeight.normal,
     this.fontFamily = 'RockNRoll',

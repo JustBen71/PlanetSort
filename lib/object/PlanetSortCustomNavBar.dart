@@ -29,10 +29,10 @@ class PlanetSortCustomNavBar extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Icon(items[index].icon,
-                    color: index == currentIndex ? GREEN : DARK),
+                    color: index == currentIndex ? green : dark),
                 Text(items[index].label,
                     style: TextStyle(
-                      color: index == currentIndex ? GREEN : DARK,
+                      color: index == currentIndex ? green : dark,
                     )),
               ],
             ),
