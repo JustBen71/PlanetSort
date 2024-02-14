@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
+import 'package:planetsort/component/PlanetSortButton.dart';
+import 'package:planetsort/component/PlanetSortDateField.dart';
+import 'package:planetsort/component/PlanetSortTextField.dart';
+import 'package:planetsort/component/TitleText.dart';
 
 import 'package:planetsort/pages/home_page.dart';
+import 'package:planetsort/utils/constant.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -22,23 +27,6 @@ class _SignUpPageState extends State<SignUpPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-
-  DateTime? _selectedDate;
-
-  Future<void> _pickDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-    );
-    if (picked != null && picked != _selectedDate) {
-      setState(() {
-        _selectedDate = picked;
-        _birthDateController.text = DateFormat('yyyy-MM-dd').format(picked);
-      });
-    }
-  }
 
   @override
   void dispose() {
@@ -92,10 +80,10 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign up',
-            style: TextStyle(
-              color: Color(0xFFFEFAE0),
-            )),
+        title: TitleText(
+          data: "Sign up",
+          fontSize: 55,
+        ),
         backgroundColor: const Color(0xFF5D6936),
         centerTitle: true,
       ),
@@ -107,10 +95,11 @@ class _SignUpPageState extends State<SignUpPage> {
           child: ListView(
             children: <Widget>[
               const SizedBox(height: 20),
-              _buildTextField(
+              PlanetSortTextField(
                 controller: _firstNameController,
                 icon: Icons.person,
-                label: 'First name',
+                obscureText: false,
+                placeholder: "Firstname",
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your first name';
@@ -118,10 +107,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              _buildTextField(
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
+              PlanetSortTextField(
                 controller: _lastNameController,
                 icon: Icons.person,
-                label: 'Last name',
+                obscureText: false,
+                placeholder: "Lastname",
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your last name';
@@ -129,11 +120,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              _buildDateField(
-                context: context,
+              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              PlanetSortDateField(
                 controller: _birthDateController,
                 icon: Icons.calendar_today,
-                label: 'Birth date',
+                placeholder: 'Birth date',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your birth date';
@@ -141,10 +132,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              _buildTextField(
+              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              PlanetSortTextField(
                 controller: _emailController,
                 icon: Icons.email,
-                label: 'Email address',
+                obscureText: false,
+                placeholder: 'Email',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
@@ -154,10 +147,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              _buildTextField(
+              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              PlanetSortTextField(
                 controller: _passwordController,
                 icon: Icons.lock,
-                label: 'Password',
+                placeholder: 'Password',
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -168,10 +162,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              _buildTextField(
+              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              PlanetSortTextField(
                 controller: _confirmPasswordController,
                 icon: Icons.lock,
-                label: 'Confirm password',
+                placeholder: 'Confirm password',
                 obscureText: true,
                 validator: (value) {
                   if (value != _passwordController.text) {
@@ -180,76 +175,15 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
+              Padding(padding: const EdgeInsets.symmetric(vertical: 10.0)),
+              PlanetSortButton(
+                label: "Sign up", 
                 onPressed: _trySignUp,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFFEFAE0),
-                  foregroundColor: const Color(0xFF5D6936),
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  textStyle: const TextStyle(fontSize: 20),
-                ),
-                child: const Text('Sign up'),
               ),
               const SizedBox(height: 20),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required IconData icon,
-    required String label,
-    bool obscureText = false,
-    required TextEditingController controller,
-    required String? Function(String?)? validator,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: TextFormField(
-        controller: controller,
-        obscureText: obscureText,
-        validator: validator,
-        decoration: InputDecoration(
-          prefixIcon: Icon(icon, color: const Color(0xFF5D6936)),
-          labelText: label,
-          filled: true,
-          fillColor: const Color(0xFFFEFAE0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDateField({
-    required BuildContext context,
-    required TextEditingController controller,
-    required IconData icon,
-    required String label,
-    required String? Function(String?)? validator,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          prefixIcon: Icon(icon, color: const Color(0xFF5D6936)),
-          labelText: label,
-          filled: true,
-          fillColor: const Color(0xFFFEFAE0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
-          ),
-        ),
-        readOnly: true,
-        validator: validator,
-        onTap: () => _pickDate(context),
       ),
     );
   }
