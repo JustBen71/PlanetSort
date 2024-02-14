@@ -107,7 +107,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
                 controller: _lastNameController,
                 icon: Icons.person,

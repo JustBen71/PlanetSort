@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:planetsort/component/PlanetSortCustomNavBar.dart';
+import 'package:planetsort/component/TitleText.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,14 +9,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome Mathilde'),
+        title: TitleText(
+          data: 'Welcome Mathilde',
+          fontSize: 55,
+        ),
         backgroundColor: const Color(0xFF5D6936),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () {},
-          ),
-        ],
+        centerTitle: true,
       ),
       body: Container(
         color: const Color(0xFF5D6936),
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
+            /*Expanded(
               child: GridView.count(
                 crossAxisCount: 3,
                 children: List.generate(3, (index) {
@@ -47,30 +47,11 @@ class HomePage extends StatelessWidget {
                   );
                 }),
               ),
-            ),
+            ),*/
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Market',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'Map',
-          ),
-        ],
-      ),
+      bottomNavigationBar: const PlanetSortCustomNavBar(),
     );
   }
 }

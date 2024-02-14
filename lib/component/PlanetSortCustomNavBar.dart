@@ -1,4 +1,47 @@
-import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:planetsort/utils/constant.dart';
+
+class PlanetSortCustomNavBar extends StatefulWidget {
+  const PlanetSortCustomNavBar({super.key});
+
+  @override
+  State<PlanetSortCustomNavBar> createState() => _PlanetSortCustomNavBarState();
+}
+
+class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      backgroundColor: BEIGE,
+      selectedItemColor: GREEN,
+      unselectedItemColor: DARK,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: "Home"
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.shopping_cart),
+          label: "Market"
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.camera_alt),
+          label: ""
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: "Profile"
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.map),
+          label: "Map"
+        ),
+      ]
+    );
+  }
+}
+
+/*import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -52,4 +95,4 @@ class PlanetSortCustomNavBar extends StatelessWidget {
       ),
     );
   }
-}
+}*/
