@@ -22,10 +22,10 @@ class _PlanetSortTextFieldState extends State<PlanetSortTextField> {
         obscureText: widget.obscureText,
         validator: widget.validator,
         decoration: InputDecoration(
-          prefixIcon: Icon(widget.icon, color: GREEN),
+          prefixIcon: Icon(widget.icon, color: green),
           hintText: widget.placeholder,
           filled: true,
-          fillColor: BEIGE,
+          fillColor: beige,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide.none,

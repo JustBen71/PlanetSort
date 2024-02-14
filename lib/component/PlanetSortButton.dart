@@ -17,8 +17,8 @@ class _PlanetSortButtonState extends State<PlanetSortButton> {
     return ElevatedButton(
       onPressed: widget.onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: BEIGE,
-        foregroundColor: GREEN,
+        backgroundColor: beige,
+        foregroundColor: green,
         textStyle: const TextStyle(fontSize: 20),
       ),
       child: Text(widget.label),

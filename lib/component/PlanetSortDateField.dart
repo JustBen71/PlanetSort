@@ -37,10 +37,10 @@ class _PlanetSortDateFieldState extends State<PlanetSortDateField> {
     return TextFormField(
         controller: widget.controller,
         decoration: InputDecoration(
-          prefixIcon: Icon(widget.icon, color: GREEN),
+          prefixIcon: Icon(widget.icon, color: green),
           filled: true,
           hintText: widget.placeholder,
-          fillColor: BEIGE,
+          fillColor: beige,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide.none,

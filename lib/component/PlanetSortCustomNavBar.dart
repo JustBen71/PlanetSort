@@ -12,9 +12,9 @@ class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: BEIGE,
-      selectedItemColor: GREEN,
-      unselectedItemColor: DARK,
+      backgroundColor: beige,
+      selectedItemColor: green,
+      unselectedItemColor: dark,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
@@ -80,13 +80,13 @@ class PlanetSortCustomNavBar extends StatelessWidget {
               children: <Widget>[
                 Icon(items[index].icon,
                     color: index == currentIndex
-                        ? GREEN
-                        : DARK),
+                        ? green
+                        : dark),
                 Text(items[index].label,
                     style: TextStyle(
                       color: index == currentIndex
-                          ? GREEN
-                          : DARK,
+                          ? green
+                          : dark,
                     )),
               ],
             ),
