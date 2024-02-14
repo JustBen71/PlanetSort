@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:planetsort/object/BottomAppBarItem.dart';
-import 'package:planetsort/object/TitleText.dart';
+import 'package:planetsort/component/TitleText.dart';
 import 'package:planetsort/utils/constant.dart';
-import '../object/PlanetSortCustomNavBar.dart';
+import '../component/PlanetSortCustomNavBar.dart';
 
 class TemplatePage extends StatefulWidget {
   const TemplatePage({super.key, required this.title, required this.column, required this.center});
@@ -46,13 +46,6 @@ class _TemplatePage extends State<TemplatePage> {
                 _currentIndex = index;
               });
             },
-            items: [
-              BottomAppBarItem(icon: Icons.home, label: 'Home'),
-              BottomAppBarItem(icon: Icons.shopping_bag, label: 'Market'),
-              BottomAppBarItem(icon: Icons.camera_alt, label: ''),
-              BottomAppBarItem(icon: Icons.person, label: 'Profile'),
-              BottomAppBarItem(icon: Icons.map_sharp, label: 'Map'),
-            ],
         )
     );
   }

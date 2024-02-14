@@ -12,7 +12,7 @@ class TitleText extends StatelessWidget {
   {
     required this.data,
     this.color = BEIGE,
-    this.fontSize = 14,
+    this.fontSize = 55,
     this.fontWeight = FontWeight.normal,
     this.fontFamily = 'RockNRoll',
   });
@@ -23,7 +23,6 @@ class TitleText extends StatelessWidget {
       data,
       style: TextStyle(
         color: color,
-        fontSize: fontSize,
         fontWeight: fontWeight,
         fontFamily: fontFamily,
       ),

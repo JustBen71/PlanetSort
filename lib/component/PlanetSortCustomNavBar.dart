@@ -7,12 +7,17 @@ import 'package:planetsort/utils/constant.dart';
 
 
 class PlanetSortCustomNavBar extends StatelessWidget {
-  final List<BottomAppBarItem> items;
+  final List<BottomAppBarItem> items = [
+              BottomAppBarItem(icon: Icons.home, label: 'Home'),
+              BottomAppBarItem(icon: Icons.shopping_bag, label: 'Market'),
+              BottomAppBarItem(icon: Icons.camera_alt, label: ''),
+              BottomAppBarItem(icon: Icons.person, label: 'Profile'),
+              BottomAppBarItem(icon: Icons.map_sharp, label: 'Map')
+    ];
   final int currentIndex;
   final ValueChanged<int> onTap;
 
   PlanetSortCustomNavBar({
-    required this.items,
     required this.currentIndex,
     required this.onTap,
   });

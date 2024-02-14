@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:planetsort/component/PlanetSortButton.dart';
+import 'package:planetsort/component/PlanetSortTextField.dart';
+import 'package:planetsort/component/TitleText.dart';
 
 import 'package:planetsort/pages/home_page.dart';
 import 'package:planetsort/pages/signup_page.dart';
+import 'package:planetsort/utils/constant.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,7 +19,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
-  String _email = '', _password = '';
+  final _email = TextEditingController();
+  final _password = TextEditingController();
 
   void _tryLogin() async {
     final isValid = _formKey.currentState!.validate();
@@ -23,8 +28,8 @@ class _LoginPageState extends State<LoginPage> {
     _formKey.currentState!.save();
     try {
       final user = await _auth.signInWithEmailAndPassword(
-        email: _email,
-        password: _password,
+        email: _email.text,
+        password: _password.text,
       );
       if (user.user != null && mounted) {
         Navigator.of(context).pushAndRemoveUntil(
@@ -40,36 +45,51 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Connexion')),
+      backgroundColor: GREEN,
+      appBar: AppBar(
+        backgroundColor: GREEN, 
+        title: TitleText(data: 'Sign in',),
+        centerTitle: true,
+      ),
       body: Form(
         key: _formKey,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              decoration: const InputDecoration(labelText: 'Email'),
-              onSaved: (value) => _email = value!,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(labelText: 'Mot de passe'),
-              obscureText: true,
-              onSaved: (value) => _password = value!,
-            ),
-            ElevatedButton(
-              onPressed: _tryLogin,
-              child: const Text('Se connecter'),
-            ),
-            const SizedBox(height: 20),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SignUpPage()));
-              },
-              child: const Text('Créer un compte'),
-            ),
-          ],
-        ),
+        child:  Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: <Widget>[
+              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              PlanetSortTextField(
+                controller: _email, 
+                icon: Icons.person, 
+                obscureText: false,
+                placeholder: "Email",
+                onSaved: (value) => _email.text = value!.toString(),
+              ),
+              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              PlanetSortTextField(
+                controller: _password,
+                icon: Icons.lock,
+                placeholder: 'Mot de passe',
+                obscureText: true,
+                onSaved: (value) => _password.text = value!.toString(),
+              ),
+              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              PlanetSortButton(
+                label: 'Sign in', 
+                onPressed: _tryLogin,
+              ),
+              Padding(padding: const EdgeInsets.symmetric(vertical: 20.0)),
+              PlanetSortButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpPage()));
+                },
+                label: 'Créer un compte',
+              ),
+            ],
+        ),)
       ),
     );
   }
