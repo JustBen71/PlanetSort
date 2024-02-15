@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:planetsort/pages/home_page.dart';
 
 import 'firebase_options.dart';
-import 'pages/login_page.dart';
+import 'package:planetsort/pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      home: HomePage(),
     );
   }
 }

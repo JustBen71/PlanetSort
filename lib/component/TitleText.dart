@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:planetsort/utils/constant.dart';
 
 class TitleText extends StatelessWidget {

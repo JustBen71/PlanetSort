@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:planetsort/utils/constant.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -19,48 +20,46 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 6.0,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            _buildTabItem(
-              icon: Icons.home,
-              index: 0,
-            ),
-            _buildTabItem(
-              icon: Icons.shopping_cart,
-              index: 1,
-            ),
-            const SizedBox(width: 48),
-            _buildTabItem(
-              icon: Icons.person,
-              index: 2,
-            ),
-            _buildTabItem(
-              icon: Icons.map,
-              index: 3,
-            ),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, color: green),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart, color: green),
+            label: 'Market',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person, color: green),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map, color: green),
+            label: 'Map',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: beige,
+        unselectedItemColor: green.withOpacity(0.6),
+        selectedLabelStyle: const TextStyle(color: green),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.camera_alt),
-        onPressed: () {},
+      floatingActionButton: SizedBox(
+        height: 80.0,
+        width: 80.0,
+        child: FittedBox(
+            child: FloatingActionButton(
+          backgroundColor: green,
+          elevation: 4.0,
+          onPressed: () {},
+          shape: const CircleBorder(),
+          materialTapTargetSize: MaterialTapTargetSize.padded,
+          child: const Icon(Icons.camera_alt, size: 24.0, color: beige),
+        )),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
-  }
-
-  Widget _buildTabItem({
-    required IconData icon,
-    required int index,
-  }) {
-    return IconButton(
-      icon: Icon(icon),
-      onPressed: () => _onItemTapped(index),
     );
   }
 }
