@@ -1,32 +1,39 @@
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
+
 import 'package:planetsort/utils/constant.dart';
 
 class PlanetSortDateField extends StatefulWidget {
-  const PlanetSortDateField({super.key, required this.controller, required this.icon, required this.placeholder, this.validator});
+  const PlanetSortDateField({
+    super.key,
+    required this.controller,
+    required this.icon,
+    required this.placeholder,
+    this.validator,
+  });
+
   final TextEditingController controller;
   final IconData icon;
   final String placeholder;
   final String? Function(String?)? validator;
-
 
   @override
   State<PlanetSortDateField> createState() => _PlanetSortDateFieldState();
 }
 
 class _PlanetSortDateFieldState extends State<PlanetSortDateField> {
-  DateTime? _selectedDate;
-
-  Future<void> _pickDate(BuildContext context, DateTime? _selectedDate) async {
+  void _pickDate() async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: _selectedDate ?? DateTime.now(),
+      initialDate: widget.controller.text.isNotEmpty
+          ? DateFormat('yyyy-MM-dd').parse(widget.controller.text)
+          : DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
-    if (picked != null && picked != _selectedDate) {
+    if (picked != null) {
       setState(() {
-        _selectedDate = picked;
         widget.controller.text = DateFormat('yyyy-MM-dd').format(picked);
       });
     }
@@ -35,22 +42,20 @@ class _PlanetSortDateFieldState extends State<PlanetSortDateField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        controller: widget.controller,
-        decoration: InputDecoration(
-          prefixIcon: Icon(widget.icon, color: green),
-          filled: true,
-          hintText: widget.placeholder,
-          fillColor: beige,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
-          ),
+      controller: widget.controller,
+      decoration: InputDecoration(
+        prefixIcon: Icon(widget.icon, color: green),
+        hintText: widget.placeholder,
+        filled: true,
+        fillColor: beige,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
         ),
-        readOnly: true,
-        validator: widget.validator,
-        onTap: () => _pickDate(context, _selectedDate),
-      );
+      ),
+      readOnly: true,
+      validator: widget.validator,
+      onTap: _pickDate,
+    );
   }
 }
-
- 

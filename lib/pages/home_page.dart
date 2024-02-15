@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:planetsort/component/PlanetSortCustomNavBar.dart';
 import 'package:planetsort/component/TitleText.dart';
+import 'package:planetsort/component/navbar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TitleText(
+        title: const TitleText(
           data: 'Welcome Mathilde',
           fontSize: 55,
         ),
@@ -38,20 +38,10 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            /*Expanded(
-              child: GridView.count(
-                crossAxisCount: 3,
-                children: List.generate(3, (index) {
-                  return Card(
-                    child: Image.asset(''),
-                  );
-                }),
-              ),
-            ),*/
           ],
         ),
       ),
-      bottomNavigationBar: const PlanetSortCustomNavBar(),
+      bottomNavigationBar: const Navbar(),
     );
   }
 }

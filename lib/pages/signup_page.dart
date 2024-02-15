@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:intl/intl.dart';
+
 import 'package:planetsort/component/PlanetSortButton.dart';
 import 'package:planetsort/component/PlanetSortDateField.dart';
 import 'package:planetsort/component/PlanetSortTextField.dart';
 import 'package:planetsort/component/TitleText.dart';
-
 import 'package:planetsort/pages/home_page.dart';
-import 'package:planetsort/utils/constant.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -80,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TitleText(
+        title: const TitleText(
           data: "Sign up",
           fontSize: 55,
         ),
@@ -120,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortDateField(
                 controller: _birthDateController,
                 icon: Icons.calendar_today,
@@ -132,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
                 controller: _emailController,
                 icon: Icons.email,
@@ -147,7 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
                 controller: _passwordController,
                 icon: Icons.lock,
@@ -162,7 +160,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
                 controller: _confirmPasswordController,
                 icon: Icons.lock,
@@ -175,9 +173,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 10.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
               PlanetSortButton(
-                label: "Sign up", 
+                label: "Sign up",
                 onPressed: _trySignUp,
               ),
               const SizedBox(height: 20),
