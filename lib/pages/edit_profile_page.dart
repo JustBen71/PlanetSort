@@ -139,43 +139,57 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: const TitleText(data: 'Edit Profile'),
+        centerTitle: true,
         backgroundColor: green,
       ),
+      backgroundColor: green,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            PlanetSortTextField(
-              controller: _firstNameController,
-              icon: Icons.person,
-              placeholder: 'First Name',
-              obscureText: false,
-            ),
-            PlanetSortTextField(
-                controller: _lastNameController,
-                icon: Icons.person,
-                obscureText: false,
-                placeholder: 'Last Name'),
-            PlanetSortDateField(
-                controller: _birthDateController,
-                icon: Icons.calendar_today,
-                placeholder: 'Birth Date'),
-            PlanetSortTextField(
-                controller: _oldPasswordController,
-                icon: Icons.lock,
-                obscureText: true,
-                placeholder: 'Enter actual password'),
-            PlanetSortTextField(
-              controller: _newPasswordController,
-              obscureText: true,
-              icon: Icons.lock,
-              placeholder: 'Enter new password',
-            ),
-            PlanetSortTextField(
-                controller: _confirmPasswordController,
-                icon: Icons.lock,
-                obscureText: true,
-                placeholder: 'Confirm your new password'),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: PlanetSortTextField(
+                  controller: _firstNameController,
+                  icon: Icons.person,
+                  placeholder: 'First Name',
+                  obscureText: false,
+                )),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: PlanetSortTextField(
+                    controller: _lastNameController,
+                    icon: Icons.person,
+                    obscureText: false,
+                    placeholder: 'Last Name')),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: PlanetSortDateField(
+                    controller: _birthDateController,
+                    icon: Icons.calendar_today,
+                    placeholder: 'Birth Date')),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: PlanetSortTextField(
+                    controller: _oldPasswordController,
+                    icon: Icons.lock,
+                    obscureText: true,
+                    placeholder: 'Enter actual password')),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: PlanetSortTextField(
+                  controller: _newPasswordController,
+                  obscureText: true,
+                  icon: Icons.lock,
+                  placeholder: 'Enter new password',
+                )),
+            Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: PlanetSortTextField(
+                    controller: _confirmPasswordController,
+                    icon: Icons.lock,
+                    obscureText: true,
+                    placeholder: 'Confirm your new password')),
             const SizedBox(height: 20),
             PlanetSortButton(
               onPressed: _updateUserProfile,
