@@ -17,14 +17,14 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _birthDateController = TextEditingController();
-  final TextEditingController _oldPasswordController = TextEditingController();
-  final TextEditingController _newPasswordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final _controllers = List.generate(7, (_) => TextEditingController());
+  late final TextEditingController _firstNameController = _controllers[0];
+  late final TextEditingController _lastNameController = _controllers[1];
+  late final TextEditingController _emailController = _controllers[2];
+  late final TextEditingController _birthDateController = _controllers[3];
+  late final TextEditingController _oldPasswordController = _controllers[4];
+  late final TextEditingController _newPasswordController = _controllers[5];
+  late final TextEditingController _confirmPasswordController = _controllers[6];
 
   @override
   void initState() {
@@ -49,51 +49,90 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   Future<void> _updateUserProfile() async {
-    String firstName = _firstNameController.text;
-    String lastName = _lastNameController.text;
-    String birthDate = _birthDateController.text;
-    String currentPassword = _oldPasswordController.text;
-
     User? user = FirebaseAuth.instance.currentUser;
-    if (user != null && currentPassword.isNotEmpty) {
-      AuthCredential credential = EmailAuthProvider.credential(
-          email: user.email!, password: currentPassword);
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No user is currently signed in')),
+      );
+      return;
+    }
 
-      user.reauthenticateWithCredential(credential).then((result) {
-        FirebaseFirestore.instance.collection('users').doc(user.uid).update({
-          'firstName': firstName,
-          'lastName': lastName,
-          'birthDate': birthDate,
-        }).then((_) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Profile updated succesfully!')),
-          );
-        }).catchError((error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Failed to update profile')),
-          );
-        });
-      }).catchError((error) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to reauthenticate')),
-        );
-      });
-    } else {
+    DocumentSnapshot userData = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+
+    Map<String, dynamic> updates = {};
+
+    if (_firstNameController.text != userData['firstName']) {
+      updates['firstName'] = _firstNameController.text;
+    }
+
+    if (_lastNameController.text != userData['lastName']) {
+      updates['lastName'] = _lastNameController.text;
+    }
+
+    if (_birthDateController.text != userData['birthDate']) {
+      updates['birthDate'] = _birthDateController.text;
+    }
+
+    if (_oldPasswordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Current password is required')),
       );
+      return;
+    }
+
+    AuthCredential credential = EmailAuthProvider.credential(
+      email: user.email!,
+      password: _oldPasswordController.text,
+    );
+
+    try {
+      await user.reauthenticateWithCredential(credential);
+
+      if (_newPasswordController.text.isNotEmpty &&
+          _confirmPasswordController.text.isNotEmpty) {
+        if (_newPasswordController.text != _confirmPasswordController.text) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('New passwords don\'t match')),
+          );
+          return;
+        }
+
+        await user.updatePassword(_newPasswordController.text);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Password updated successfully')),
+        );
+      }
+
+      if (updates.isNotEmpty) {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .update(updates);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Profile updated successfully')),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('The current password is incorrect')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to update profile')),
+        );
+      }
     }
   }
 
   @override
   void dispose() {
-    _firstNameController.dispose();
-    _lastNameController.dispose();
-    _emailController.dispose();
-    _birthDateController.dispose();
-    _oldPasswordController.dispose();
-    _newPasswordController.dispose();
-    _confirmPasswordController.dispose();
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
     super.dispose();
   }
 
@@ -104,7 +143,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         title: const TitleText(data: 'Edit Profile'),
         backgroundColor: green,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
