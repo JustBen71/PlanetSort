@@ -17,14 +17,13 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  final _controllers = List.generate(7, (_) => TextEditingController());
+  final _controllers = List.generate(6, (_) => TextEditingController());
   late final TextEditingController _firstNameController = _controllers[0];
   late final TextEditingController _lastNameController = _controllers[1];
-  late final TextEditingController _emailController = _controllers[2];
-  late final TextEditingController _birthDateController = _controllers[3];
-  late final TextEditingController _oldPasswordController = _controllers[4];
-  late final TextEditingController _newPasswordController = _controllers[5];
-  late final TextEditingController _confirmPasswordController = _controllers[6];
+  late final TextEditingController _birthDateController = _controllers[2];
+  late final TextEditingController _oldPasswordController = _controllers[3];
+  late final TextEditingController _newPasswordController = _controllers[4];
+  late final TextEditingController _confirmPasswordController = _controllers[5];
 
   @override
   void initState() {
@@ -42,7 +41,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
       setState(() {
         _firstNameController.text = userData['firstName'];
         _lastNameController.text = userData['lastName'];
-        _emailController.text = userData['email'];
         _birthDateController.text = userData['birthDate'];
       });
     }
