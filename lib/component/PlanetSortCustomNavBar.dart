@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:planetsort/utils/constant.dart';
 
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+
+
 class PlanetSortCustomNavBar extends StatefulWidget {
   const PlanetSortCustomNavBar({super.key});
 
@@ -9,14 +12,58 @@ class PlanetSortCustomNavBar extends StatefulWidget {
 }
 
 class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: beige,
-      selectedItemColor: green,
-      unselectedItemColor: dark,
-      items: const [
-        BottomNavigationBarItem(
+    return
+      ConvexAppBar(
+        color: green,
+        style: TabStyle.fixedCircle,
+        backgroundColor: beige,
+        activeColor: green,
+        cornerRadius: 30,
+        height: 70,
+        items: [
+          TabItem(
+          icon: Icon((_selectedIndex == 0 ? Icons.home : Icons.home_outlined), color: green,),
+          title: "Home",
+        ),
+        TabItem(
+          icon: Icon((_selectedIndex == 1 ? Icons.shopping_cart : Icons.shopping_cart_outlined), color: green),
+          title: "Market"
+        ),
+        TabItem(
+          icon: Icon((_selectedIndex == 2 ? Icons.camera_alt : Icons.camera_alt_outlined), color: beige),
+          title: "", 
+        ),
+        TabItem(
+          icon: Icon((_selectedIndex == 3 ? Icons.person_2 : Icons.person_2_outlined), color: green),
+          title: "Profile"
+        ),
+        TabItem(
+          icon: Icon((_selectedIndex == 4 ? Icons.map : Icons.map_outlined), color: green),
+          title: "Map"
+        ),
+      ],
+      initialActiveIndex: _selectedIndex,
+      onTap: (int i) => setState(() {
+        _selectedIndex = i;
+      }),
+      
+      /*
+        backgroundColor: beige,
+        currentIndex: _selectedIndex,    
+        selectedItemColor: green,
+        selectedLabelStyle: const TextStyle(color: green),
+        unselectedLabelStyle: const TextStyle(color: dark),
+        unselectedItemColor: dark,
+        onTap: (value) {
+          setState(() {
+            _selectedIndex = value;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: "Home"
         ),
@@ -36,63 +83,7 @@ class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
           icon: Icon(Icons.map),
           label: "Map"
         ),
-      ]
-    );
+      ],                                                                       
+    */);
   }
 }
-
-/*import 'dart:convert';
-import 'dart:io';
-
-import 'package:flutter/material.dart';
-import 'package:planetsort/object/BottomAppBarItem.dart';
-import 'package:planetsort/utils/constant.dart';
-
-
-class PlanetSortCustomNavBar extends StatelessWidget {
-  final List<BottomAppBarItem> items = [
-              BottomAppBarItem(icon: Icons.home, label: 'Home'),
-              BottomAppBarItem(icon: Icons.shopping_bag, label: 'Market'),
-              BottomAppBarItem(icon: Icons.camera_alt, label: ''),
-              BottomAppBarItem(icon: Icons.person, label: 'Profile'),
-              BottomAppBarItem(icon: Icons.map_sharp, label: 'Map')
-    ];
-  final int currentIndex;
-  final ValueChanged<int> onTap;
-
-  PlanetSortCustomNavBar({
-    required this.currentIndex,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomAppBar(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(items.length, (index) {
-          return InkWell(
-            onTap: () {
-              onTap(index);
-            },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(items[index].icon,
-                    color: index == currentIndex
-                        ? green
-                        : dark),
-                Text(items[index].label,
-                    style: TextStyle(
-                      color: index == currentIndex
-                          ? green
-                          : dark,
-                    )),
-              ],
-            ),
-          );
-        }),
-      ),
-    );
-  }
-}*/

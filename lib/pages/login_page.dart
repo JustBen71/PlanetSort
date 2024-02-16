@@ -48,7 +48,8 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: green,
       appBar: AppBar(
         backgroundColor: green, 
-        title: TitleText(data: 'Sign in',),
+        title: const TitleText(data: 'Sign in',
+        fontSize: 40,),
         centerTitle: true,
       ),
       body: Form(
@@ -57,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: <Widget>[
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
                 controller: _email, 
                 icon: Icons.person, 
@@ -65,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                 placeholder: "Email",
                 onSaved: (value) => _email.text = value!.toString(),
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
                 controller: _password,
                 icon: Icons.lock,
@@ -73,12 +74,12 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
                 onSaved: (value) => _password.text = value!.toString(),
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortButton(
                 label: 'Sign in', 
                 onPressed: _tryLogin,
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 20.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 20.0)),
               PlanetSortButton(
                 onPressed: () {
                   Navigator.push(

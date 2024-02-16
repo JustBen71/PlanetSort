@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:planetsort/component/PlanetSortCustomNavBar.dart';
 import 'package:planetsort/component/TitleText.dart';
+import 'package:planetsort/utils/constant.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -8,16 +9,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: green,
       appBar: AppBar(
-        title: TitleText(
+        title: const TitleText(
           data: 'Welcome Mathilde',
           fontSize: 55,
         ),
-        backgroundColor: const Color(0xFF5D6936),
+        backgroundColor: green,
         centerTitle: true,
       ),
       body: Container(
-        color: const Color(0xFF5D6936),
+        color: green,
         child: Column(
           children: <Widget>[
             const Padding(
