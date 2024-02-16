@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:planetsort/component/PlanetSortButton.dart';
 import 'package:planetsort/component/PlanetSortTextField.dart';
 import 'package:planetsort/component/TitleText.dart';
+import 'package:planetsort/pages/edit_profile_page.dart';
 
 import 'package:planetsort/pages/home_page.dart';
 import 'package:planetsort/pages/signup_page.dart';
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
         if (userCredential.user != null && mounted) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => const EditProfilePage()),
           );
         }
       } on FirebaseAuthException catch (e) {
@@ -68,14 +69,14 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _emailController,
                   icon: Icons.person,
                   obscureText: false,
-                  placeholder: "Email",
+                  placeholder: 'Email',
                   onSaved: (value) => _emailController.text = value!.toString(),
                 ),
                 const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
                 PlanetSortTextField(
                   controller: _passwordController,
                   icon: Icons.lock,
-                  placeholder: 'Mot de passe',
+                  placeholder: 'Password',
                   obscureText: true,
                   onSaved: (value) =>
                       _passwordController.text = value!.toString(),
@@ -93,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                         MaterialPageRoute(
                             builder: (context) => const SignUpPage()));
                   },
-                  label: 'Créer un compte',
+                  label: 'Create an account',
                 ),
               ],
             ),

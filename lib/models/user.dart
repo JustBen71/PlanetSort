@@ -1,35 +1,39 @@
-class UserModel {
-  String firstName;
-  String lastName;
-  DateTime birthDate;
-  String email;
-  String password;
+class User {
+  final String id;
+  final String email;
+  final String firstName;
+  final String lastName;
+  final DateTime birthDate;
+  final DateTime createdAt;
 
-  UserModel({
+  User({
+    required this.id,
+    required this.email,
     required this.firstName,
     required this.lastName,
     required this.birthDate,
-    required this.email,
-    required this.password,
+    required this.createdAt,
   });
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
+      'email': email,
       'firstName': firstName,
       'lastName': lastName,
       'birthDate': birthDate.toIso8601String(),
-      'email': email,
+      'createdAt': createdAt.toIso8601String(),
     };
   }
 
-  // Méthode pour créer un UserModel à partir d'une Map, utile pour la lecture à partir d'une base de données
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
-      firstName: map['firstName'] ?? '',
-      lastName: map['lastName'] ?? '',
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
+      id: map['id'],
+      email: map['email'],
+      firstName: map['firstName'],
+      lastName: map['lastName'],
       birthDate: DateTime.parse(map['birthDate']),
-      email: map['email'] ?? '',
-      password: map['password'] ?? '',
+      createdAt: DateTime.parse(map['createdAt']),
     );
   }
 }
