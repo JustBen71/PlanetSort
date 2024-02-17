@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:planetsort/routes/router.dart';
 import 'package:planetsort/utils/constant.dart';
-
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-
 
 class PlanetSortCustomNavBar extends StatefulWidget {
   const PlanetSortCustomNavBar({super.key});
@@ -12,7 +11,7 @@ class PlanetSortCustomNavBar extends StatefulWidget {
 }
 
 class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
-  int _selectedIndex = 0;
+  static int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return
@@ -34,7 +33,7 @@ class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
         ),
         TabItem(
           icon: Icon((_selectedIndex == 2 ? Icons.camera_alt : Icons.camera_alt_outlined), color: beige),
-          title: "", 
+          title: "",
         ),
         TabItem(
           icon: Icon((_selectedIndex == 3 ? Icons.person_2 : Icons.person_2_outlined), color: green),
@@ -47,6 +46,20 @@ class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
       ],
       initialActiveIndex: _selectedIndex,
       onTap: (int i) => setState(() {
+        var page = "";
+        switch(i) {
+          case 2 :
+            if(_selectedIndex == 2) {
+              page = "Picture";
+            } else {
+              page = "Camera";
+            }
+            break;
+          default:
+            page = "Home";
+        }
+        Navigator.of(context, rootNavigator: true).push(generateRoute(page));
+        
         _selectedIndex = i;
       }),
       
