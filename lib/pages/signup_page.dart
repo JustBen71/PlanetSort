@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:planetsort/component/PlanetSortButton.dart';
-import 'package:planetsort/component/PlanetSortDateField.dart';
-import 'package:planetsort/component/PlanetSortTextField.dart';
+import 'package:planetsort/component/planetsort_button.dart';
+import 'package:planetsort/component/planetsort_datefield.dart';
+import 'package:planetsort/component/planetsort_textfield.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
 
 import 'package:planetsort/pages/home_page.dart';
@@ -178,7 +178,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
               PlanetSortButton(
-                label: "Sign up", 
+                label: "Sign up",
                 onPressed: _trySignUp,
               ),
               const SizedBox(height: 20),
