@@ -14,7 +14,10 @@ class PlanetSortButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: beige,
         foregroundColor: green,
-        textStyle: const TextStyle(fontSize: 20),
+        textStyle: const TextStyle(
+          fontSize: 20,
+          fontFamily: 'RockNRoll',
+          ),
       ),
       child: Text(label),
     );

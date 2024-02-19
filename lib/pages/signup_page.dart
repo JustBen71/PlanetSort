@@ -6,8 +6,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:planetsort/component/PlanetSortButton.dart';
 import 'package:planetsort/component/PlanetSortDateField.dart';
 import 'package:planetsort/component/PlanetSortTextField.dart';
-import 'package:planetsort/component/TitleText.dart';
+import 'package:planetsort/component/planetsort_text_title.dart';
+
 import 'package:planetsort/pages/home_page.dart';
+import 'package:planetsort/utils/constant.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -63,8 +65,9 @@ class _SignUpPageState extends State<SignUpPage> {
           'email': _emailController.text,
         });
 
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
           (Route<dynamic> route) => false,
         );
       }
@@ -78,16 +81,16 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TitleText(
+        title: const PlanetSortTitleText(
           data: "Sign up",
-          fontSize: 55,
+          fontSize: sizetitle,
         ),
-        backgroundColor: const Color(0xFF5D6936),
+        backgroundColor: green,
         centerTitle: true,
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        color: const Color(0xFF5D6936),
+        color: green,
         child: Form(
           key: _formKey,
           child: ListView(
@@ -175,7 +178,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
               PlanetSortButton(
-                label: "Sign up",
+                label: "Sign up", 
                 onPressed: _trySignUp,
               ),
               const SizedBox(height: 20),
