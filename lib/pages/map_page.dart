@@ -15,6 +15,7 @@ class MapPage extends StatelessWidget {
           fontSize: sizetitle,
           color: beige,
         ),
+        centerTitle: true,
         backgroundColor: green,
       ),
       //body: 

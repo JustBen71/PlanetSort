@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:planetsort/component/planetsort_text_normal.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/utils/constant.dart';
 
@@ -15,9 +16,23 @@ class MarketplacePage extends StatelessWidget {
           fontSize: sizetitle,
           color: beige,
         ),
+        centerTitle: true,
         backgroundColor: green,
       ),
-      //body: 
+      body: Container(
+        alignment: Alignment.center,
+        child: const Column(
+          children: [
+            Row(
+              children: [
+                PlanetSortText(
+                  data: "Here you will find our different partners and thier offers", 
+                  fontSize: paragraph,
+                )
+              ],
+            )
+        ],)
+      )
     );
   }
 }
