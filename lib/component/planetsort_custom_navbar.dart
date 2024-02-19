@@ -5,14 +5,24 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:planetsort/utils/constant.dart';
 
 class PlanetSortCustomNavBar extends StatefulWidget {
-  const PlanetSortCustomNavBar({super.key});
+  PlanetSortCustomNavBar({super.key, required this.currentIndex, required this.selectNavBarItem});
+
+  int currentIndex;
+  Function selectNavBarItem;
 
   @override
   State<PlanetSortCustomNavBar> createState() => _PlanetSortCustomNavBarState();
 }
 
 class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
-  int _selectedIndex = 0;
+  late int  currentIndex;
+  
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = widget.currentIndex;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ConvexAppBar(
@@ -25,21 +35,21 @@ class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
       items: [
         TabItem(
           icon: Icon(
-            (_selectedIndex == 0 ? Icons.home : Icons.home_outlined),
+            (currentIndex == 0 ? Icons.home : Icons.home_outlined),
             color: green,
           ),
           title: "Home",
         ),
         TabItem(
             icon: Icon(
-                (_selectedIndex == 1
+                (currentIndex == 1
                     ? Icons.shopping_cart
                     : Icons.shopping_cart_outlined),
                 color: green),
             title: "Market"),
         TabItem(
           icon: Icon(
-              (_selectedIndex == 2
+              (currentIndex == 2
                   ? Icons.camera_alt
                   : Icons.camera_alt_outlined),
               color: beige),
@@ -47,19 +57,20 @@ class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
         ),
         TabItem(
             icon: Icon(
-                (_selectedIndex == 3
+                (currentIndex == 3
                     ? Icons.person_2
                     : Icons.person_2_outlined),
                 color: green),
             title: "Profile"),
         TabItem(
-            icon: Icon((_selectedIndex == 4 ? Icons.map : Icons.map_outlined),
+            icon: Icon((currentIndex == 4 ? Icons.map : Icons.map_outlined),
                 color: green),
             title: "Map"),
       ],
-      initialActiveIndex: _selectedIndex,
+      initialActiveIndex: currentIndex,
       onTap: (int i) => setState(() {
-        _selectedIndex = i;
+        currentIndex = i;
+        widget.selectNavBarItem(i);
       }),
     );
   }
