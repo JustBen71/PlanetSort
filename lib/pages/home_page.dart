@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:planetsort/component/PlanetSortCustomNavBar.dart';
+import 'package:planetsort/component/planetsort_custom_navbar.dart';
 import 'package:planetsort/component/planetsort_text_normal.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/utils/constant.dart';

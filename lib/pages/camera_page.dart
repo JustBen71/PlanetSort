@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:planetsort/pages/picture_page.dart';
-import 'package:planetsort/component/PlanetSortCustomNavBar.dart';
+import 'package:planetsort/component/planetsort_custom_navbar.dart';
 
 import 'package:planetsort/locator.dart';
 import 'package:planetsort/repository/camera_app_singleton.dart';

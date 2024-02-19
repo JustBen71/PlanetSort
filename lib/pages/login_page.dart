@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:planetsort/component/PlanetSortButton.dart';
-import 'package:planetsort/component/PlanetSortTextField.dart';
+import 'package:planetsort/component/planetsort_button.dart';
+import 'package:planetsort/component/planetsort_textfield.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/pages/home_page.dart';
 import 'package:planetsort/pages/signup_page.dart';
