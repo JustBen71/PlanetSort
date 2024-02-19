@@ -54,12 +54,12 @@ class HomePage extends StatelessWidget {
                     fontSize: sizetitle3,
                   ),
                 ),
-                subtitle: PlanetSortText(
+                subtitle: Column(children: [Row(children: [PlanetSortText(
                   data:
                       'Use public transportation or prefer walking or cycling to reduce your carbon footprint. Use public transportation or prefer walking or cycling to reduce your carbon footprint.',
                   color: green,
                   fontSize: paragraph,
-                ),
+                )])]),
                 trailing: IconButton(
                   icon: Icon(Icons.close),
                   onPressed: null,
