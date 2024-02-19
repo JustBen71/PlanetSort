@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:planetsort/component/PlanetSortButton.dart';
 import 'package:planetsort/component/PlanetSortTextField.dart';
 import 'package:planetsort/component/TitleText.dart';
-import 'package:planetsort/pages/edit_profile_page.dart';
-
 import 'package:planetsort/pages/home_page.dart';
 import 'package:planetsort/pages/signup_page.dart';
 import 'package:planetsort/utils/constant.dart';
@@ -33,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
         if (userCredential.user != null && mounted) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const EditProfilePage()),
+            MaterialPageRoute(builder: (context) => const HomePage()),
           );
         }
       } on FirebaseAuthException catch (e) {

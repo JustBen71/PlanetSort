@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:planetsort/component/TitleText.dart';
-import 'package:planetsort/component/navbar.dart';
 import 'package:planetsort/utils/constant.dart';
 
 class HomePage extends StatefulWidget {
