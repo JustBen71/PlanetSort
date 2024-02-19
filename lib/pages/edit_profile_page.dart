@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:planetsort/component/PlanetSortButton.dart';
 import 'package:planetsort/component/PlanetSortDateField.dart';
 import 'package:planetsort/component/PlanetSortTextField.dart';
-import 'package:planetsort/component/TitleText.dart';
+import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/utils/constant.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -138,7 +138,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TitleText(data: 'Edit Profile'),
+        title: const PlanetSortTitleText(data: 'Edit Profile'),
         centerTitle: true,
         backgroundColor: green,
       ),
