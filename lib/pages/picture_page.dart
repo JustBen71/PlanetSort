@@ -2,14 +2,21 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:planetsort/locator.dart';
+import 'package:planetsort/repository/camera_app_singleton.dart';
 
 class PicturePage extends StatelessWidget {
-  final String imagePath;
 
-  const PicturePage({super.key, required this.imagePath});
+  const PicturePage({super.key});
+
+  String getPicturePath() {
+    Camera_App_Singleton appState = locator.get();
+    return appState.imagePath;
+  }
 
   @override
   Widget build(BuildContext context) {
+    String imagePath = getPicturePath();
     savePicture(imagePath);
     return Scaffold(
       appBar: AppBar(title: const Text('Display the Picture')),
