@@ -20,11 +20,11 @@ class PlanetSortText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Text(
+    return Expanded(
+      child: Column(children: [
+        Text(
         overflow: TextOverflow.visible,
         data,
-        //textAlign: TextAlign.center,
         style: TextStyle(
           color: color,
           fontSize: fontSize,
@@ -33,6 +33,8 @@ class PlanetSortText extends StatelessWidget {
         ),
         softWrap: true,
       ),
+      ],)
+      
     );
   }
 }

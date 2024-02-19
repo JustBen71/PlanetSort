@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
               data: 'You need to scan 3 more wastes',
               fontSize: sizetitle2,
             ),
-            /*Card(
+            Card(
               color: beige,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
                   onPressed: null,
                 ),
               ),
-            ),*/
+            ),
             /*Expanded(
               child: GridView.count(
                 crossAxisCount: 3,

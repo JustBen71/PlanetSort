@@ -9,6 +9,7 @@ import 'package:planetsort/component/planetsort_textfield.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
 
 import 'package:planetsort/pages/home_page.dart';
+import 'package:planetsort/pages/main_page.dart';
 import 'package:planetsort/utils/constant.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -67,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
         // ignore: use_build_context_synchronously
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const HomePage()),
+          MaterialPageRoute(builder: (context) => const MainView()),
           (Route<dynamic> route) => false,
         );
       }
