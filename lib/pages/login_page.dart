@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:planetsort/component/PlanetSortButton.dart';
 import 'package:planetsort/component/PlanetSortTextField.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
-import 'package:planetsort/component/planetsort_text_normal.dart';
-import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/pages/home_page.dart';
 import 'package:planetsort/pages/signup_page.dart';
 import 'package:planetsort/utils/constant.dart';
@@ -56,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: green,
         title: const PlanetSortTitleText(
           data: 'Sign in',
+          fontSize: sizetitle,
         ),
         centerTitle: true,
       ),

@@ -17,7 +17,7 @@ class PlanetSortButton extends StatelessWidget {
         textStyle: const TextStyle(
           fontSize: 20,
           fontFamily: 'RockNRoll',
-          ),
+        ),
       ),
       child: Text(label),
     );

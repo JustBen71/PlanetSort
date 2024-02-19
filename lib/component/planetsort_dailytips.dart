@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:planetsort/utils/constant.dart';
 
 class DailyTipsCard extends StatelessWidget {
@@ -14,7 +15,8 @@ class DailyTipsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: beige, // Couleur de fond de la carte, ajustez selon votre hexadécimal
+      color:
+          beige, // Couleur de fond de la carte, ajustez selon votre hexadécimal
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -39,10 +41,9 @@ class DailyTipsCard extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: const Icon(Icons.close, color: green), // Couleur de l'icône X
-              onPressed: (() => {
-
-              }),
+              icon:
+                  const Icon(Icons.close, color: green), // Couleur de l'icône X
+              onPressed: (() => {}),
             ),
           ],
         ),
