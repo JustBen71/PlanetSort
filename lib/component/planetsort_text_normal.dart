@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:planetsort/utils/constant.dart';
 
-class TitleText extends StatelessWidget {
+class PlanetSortText extends StatelessWidget {
   final String data;
   final Color color;
   final double fontSize;
   final FontWeight fontWeight;
   final String fontFamily;
 
-  const TitleText({
+  const PlanetSortText({
     super.key,
     required this.data,
     this.color = beige,
@@ -20,13 +20,18 @@ class TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      data,
-      style: TextStyle(
-        color: color,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        fontFamily: fontFamily,
+    return Flexible(
+      child: Text(
+        overflow: TextOverflow.visible,
+        data,
+        //textAlign: TextAlign.center,
+        style: TextStyle(
+          color: color,
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          fontFamily: fontFamily,
+        ),
+        softWrap: true,
       ),
     );
   }

@@ -38,6 +38,7 @@ dependencies:
   flutter_signin_button: ^2.0.0
   convex_bottom_bar: ^3.2.0
   get_it: ^7.6.7
+  provider: ^6.1.1
 
 
   # The following adds the Cupertino Icons font to your application.
