@@ -6,4 +6,5 @@ const Color beige = Color(0xFFFEFAE0);
 const Color dark = Color(0xFF000000);
 const double sizetitle = 44;
 const double sizetitle2 = 30;
-const double paragraph = 20;
+const double sizetitle3 = 22;
+const double paragraph = 11;

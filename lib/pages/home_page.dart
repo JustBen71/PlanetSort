@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:planetsort/component/PlanetSortCustomNavBar.dart';
-import 'package:planetsort/component/planetsort_text.dart';
+import 'package:planetsort/component/planetsort_text_normal.dart';
+import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/utils/constant.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: green,
       appBar: AppBar(
-        title: const PlanetSortText(
+        title: const PlanetSortTitleText(
           data: 'Welcome Mathilde' ,
           fontSize: sizetitle,
         ),
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
         color: green,
         child: const Column(
           children: <Widget> [
-            PlanetSortText(
+            PlanetSortTitleText(
                 data: 'You need to scan 3 more wastes',
                 fontSize: sizetitle2,
             ),
@@ -36,12 +37,11 @@ class HomePage extends StatelessWidget {
               color: beige,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(80), topRight: Radius.circular(80), bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))),
               child: ListTile(
-
                 title: Center( 
-                  child: PlanetSortText(
+                  child: PlanetSortTitleText(
                     data: 'Daily Tips',
                     color: green,
-                    fontSize: paragraph,
+                    fontSize: sizetitle3,
                   ),
                 ),
                 subtitle: PlanetSortText(
@@ -49,10 +49,10 @@ class HomePage extends StatelessWidget {
                     color: green,
                     fontSize: paragraph,
                   ),
-                /*trailing: IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () {},
-                ),*/
+                trailing: IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: null,
+                ),
               ),
             ),
             /*Expanded(

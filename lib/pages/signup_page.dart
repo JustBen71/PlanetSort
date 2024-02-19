@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:planetsort/component/PlanetSortButton.dart';
 import 'package:planetsort/component/PlanetSortDateField.dart';
 import 'package:planetsort/component/PlanetSortTextField.dart';
-import 'package:planetsort/component/planetsort_text.dart';
+import 'package:planetsort/component/planetsort_text_title.dart';
 
 import 'package:planetsort/pages/home_page.dart';
 import 'package:planetsort/utils/constant.dart';
@@ -81,7 +81,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const PlanetSortText(
+        title: const PlanetSortTitleText(
           data: "Sign up",
           fontSize: sizetitle,
         ),
