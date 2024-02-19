@@ -12,15 +12,24 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: green,
-      appBar: AppBar(
+      appBar: _buildAppBar(),
+      body: _buildBody(),
+    );
+  }
+
+  AppBar _buildAppBar(){
+    return AppBar(
         title: const PlanetSortTitleText(
           data: 'Welcome Mathilde',
           fontSize: sizetitle,
         ),
         backgroundColor: green,
         centerTitle: true,
-      ),
-      body: Container(
+    );
+  }
+
+  Widget _buildBody(){
+    return Container(
         alignment: Alignment.center,
         color: green,
         child: const Column(
@@ -29,7 +38,7 @@ class HomePage extends StatelessWidget {
               data: 'You need to scan 3 more wastes',
               fontSize: sizetitle2,
             ),
-            Card(
+            /*Card(
               color: beige,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -56,7 +65,7 @@ class HomePage extends StatelessWidget {
                   onPressed: null,
                 ),
               ),
-            ),
+            ),*/
             /*Expanded(
               child: GridView.count(
                 crossAxisCount: 3,
@@ -68,9 +77,7 @@ class HomePage extends StatelessWidget {
               ),
             ),*/
           ],
-        ),
-      ),
-      bottomNavigationBar: const PlanetSortCustomNavBar(),
+        )
     );
   }
 }

@@ -70,7 +70,6 @@ class CameraPageState extends State<CameraPage> {
           }
         },
       ),
-      bottomNavigationBar: const PlanetSortCustomNavBar(),
     );
   }
 
