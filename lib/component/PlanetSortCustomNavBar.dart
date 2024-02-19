@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:planetsort/utils/constant.dart';
 
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class PlanetSortCustomNavBar extends StatefulWidget {
@@ -48,42 +49,6 @@ class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
       initialActiveIndex: _selectedIndex,
       onTap: (int i) => setState(() {
         _selectedIndex = i;
-      }),
-      
-      /*
-        backgroundColor: beige,
-        currentIndex: _selectedIndex,    
-        selectedItemColor: green,
-        selectedLabelStyle: const TextStyle(color: green),
-        unselectedLabelStyle: const TextStyle(color: dark),
-        unselectedItemColor: dark,
-        onTap: (value) {
-          setState(() {
-            _selectedIndex = value;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: "Home"
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart),
-          label: "Market"
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.camera_alt),
-          label: ""
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: "Profile"
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          label: "Map"
-        ),
-      ],                                                                       
-    */);
+      }),);
   }
 }

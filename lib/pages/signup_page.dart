@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:intl/intl.dart';
+
 import 'package:planetsort/component/PlanetSortButton.dart';
 import 'package:planetsort/component/PlanetSortDateField.dart';
 import 'package:planetsort/component/PlanetSortTextField.dart';
-import 'package:planetsort/component/TitleText.dart';
+import 'package:planetsort/component/planetsort_text.dart';
 
 import 'package:planetsort/pages/home_page.dart';
 import 'package:planetsort/utils/constant.dart';
@@ -65,6 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
           'email': _emailController.text,
         });
 
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const HomePage()),
           (Route<dynamic> route) => false,
@@ -80,16 +81,16 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TitleText(
+        title: const PlanetSortText(
           data: "Sign up",
-          fontSize: 55,
+          fontSize: sizetitle,
         ),
-        backgroundColor: const Color(0xFF5D6936),
+        backgroundColor: green,
         centerTitle: true,
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        color: const Color(0xFF5D6936),
+        color: green,
         child: Form(
           key: _formKey,
           child: ListView(
@@ -120,7 +121,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortDateField(
                 controller: _birthDateController,
                 icon: Icons.calendar_today,
@@ -132,7 +133,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
                 controller: _emailController,
                 icon: Icons.email,
@@ -147,7 +148,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
                 controller: _passwordController,
                 icon: Icons.lock,
@@ -162,7 +163,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 8.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
                 controller: _confirmPasswordController,
                 icon: Icons.lock,
@@ -175,7 +176,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return null;
                 },
               ),
-              Padding(padding: const EdgeInsets.symmetric(vertical: 10.0)),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
               PlanetSortButton(
                 label: "Sign up", 
                 onPressed: _trySignUp,

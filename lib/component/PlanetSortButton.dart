@@ -19,7 +19,10 @@ class _PlanetSortButtonState extends State<PlanetSortButton> {
       style: ElevatedButton.styleFrom(
         backgroundColor: beige,
         foregroundColor: green,
-        textStyle: const TextStyle(fontSize: 20),
+        textStyle: const TextStyle(
+          fontSize: 20,
+          fontFamily: 'RockNRoll',
+          ),
       ),
       child: Text(widget.label),
     );
