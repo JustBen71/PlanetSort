@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/utils/constant.dart';
 
@@ -17,7 +18,7 @@ class MarketplacePage extends StatelessWidget {
         ),
         backgroundColor: green,
       ),
-      //body: 
+      //body:
     );
   }
 }

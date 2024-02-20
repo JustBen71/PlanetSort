@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:planetsort/component/planetsort_custom_navbar.dart';
 import 'package:planetsort/component/planetsort_text_normal.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/utils/constant.dart';
@@ -17,18 +16,18 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar(){
+  AppBar _buildAppBar() {
     return AppBar(
-        title: const PlanetSortTitleText(
-          data: 'Welcome Mathilde',
-          fontSize: sizetitle,
-        ),
-        backgroundColor: green,
-        centerTitle: true,
+      title: const PlanetSortTitleText(
+        data: 'Welcome Mathilde',
+        fontSize: sizetitle,
+      ),
+      backgroundColor: green,
+      centerTitle: true,
     );
   }
 
-  Widget _buildBody(){
+  Widget _buildBody() {
     return Container(
         alignment: Alignment.center,
         color: green,
@@ -77,7 +76,6 @@ class HomePage extends StatelessWidget {
               ),
             ),*/
           ],
-        )
-    );
+        ));
   }
 }

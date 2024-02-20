@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:camera/camera.dart';
-import 'package:planetsort/pages/picture_page.dart';
 
 import 'package:planetsort/locator.dart';
+import 'package:planetsort/pages/picture_page.dart';
 import 'package:planetsort/repository/camera_app_singleton.dart';
 import 'package:planetsort/view_model/camera_view_model.dart';
 
@@ -37,7 +38,7 @@ class CameraPageState extends State<CameraPage> {
       // Define the resolution to use.
       ResolutionPreset.medium,
     );
-    
+
     // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _controller.initialize();
   }
@@ -59,7 +60,7 @@ class CameraPageState extends State<CameraPage> {
         future: _initializeControllerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            // If the Future is complete, display the preview. 
+            // If the Future is complete, display the preview.
             return CameraPreview(_controller);
           } else {
             // Otherwise, display a loading indicator.
@@ -70,7 +71,7 @@ class CameraPageState extends State<CameraPage> {
     );
   }
 
-  Future<void> takePhoto() async{
+  Future<void> takePhoto() async {
     // Take the Picture in a try / catch block. If anything goes wrong,
     // catch the error.
     try {
@@ -82,7 +83,7 @@ class CameraPageState extends State<CameraPage> {
       // Attempt to take a picture and get the file `image`
       // where it was saved.
       final image = await _controller.takePicture();
-      
+
       if (!mounted) return;
 
       // If the picture was taken, display it on a new screen.

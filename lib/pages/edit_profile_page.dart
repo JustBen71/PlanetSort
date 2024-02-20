@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:planetsort/component/planetsort_button.dart';
 import 'package:planetsort/component/planetsort_datefield.dart';
-import 'package:planetsort/component/planetsort_textfield.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
+import 'package:planetsort/component/planetsort_textfield.dart';
 import 'package:planetsort/utils/constant.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -126,6 +126,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
   }
 
+  Future<void> _logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      print('Error logging out: $e');
+    }
+  }
+
   @override
   void dispose() {
     for (var controller in _controllers) {
@@ -196,6 +204,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
               onPressed: _updateUserProfile,
               label: 'Edit',
             ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: PlanetSortButton(
+                onPressed: _logout,
+                label: 'Sign Out',
+              ),
+            )
           ],
         ),
       ),

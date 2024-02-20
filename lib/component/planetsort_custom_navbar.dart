@@ -5,18 +5,19 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:planetsort/utils/constant.dart';
 
 class PlanetSortCustomNavBar extends StatefulWidget {
-  PlanetSortCustomNavBar({super.key, required this.currentIndex, required this.selectNavBarItem});
+  const PlanetSortCustomNavBar(
+      {super.key, required this.currentIndex, required this.selectNavBarItem});
 
-  int currentIndex;
-  Function selectNavBarItem;
+  final int currentIndex;
+  final Function(int) selectNavBarItem;
 
   @override
   State<PlanetSortCustomNavBar> createState() => _PlanetSortCustomNavBarState();
 }
 
 class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
-  late int  currentIndex;
-  
+  late int currentIndex;
+
   @override
   void initState() {
     super.initState();
@@ -57,9 +58,7 @@ class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
         ),
         TabItem(
             icon: Icon(
-                (currentIndex == 3
-                    ? Icons.person_2
-                    : Icons.person_2_outlined),
+                (currentIndex == 3 ? Icons.person_2 : Icons.person_2_outlined),
                 color: green),
             title: "Profile"),
         TabItem(

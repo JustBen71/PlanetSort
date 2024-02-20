@@ -21,7 +21,7 @@ class PicturePage extends StatelessWidget {
 
   void savePicture(String imagePath) async {
     // Saving the image
-  
+
     // Deleting old file
     //await File(imagePath).delete();
   }

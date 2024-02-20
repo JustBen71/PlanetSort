@@ -1,15 +1,16 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-class Camera {
+import 'package:camera/camera.dart';
 
-  static CameraDescription currentCamera = CameraDescription(name: "", lensDirection: CameraLensDirection.back, sensorOrientation: 0);
+class Camera {
+  static CameraDescription currentCamera = const CameraDescription(
+      name: "", lensDirection: CameraLensDirection.back, sensorOrientation: 0);
 
   static CameraDescription getCurrentCamera() {
     return currentCamera;
   }
 
-  static Future<void> initializeCamera() async{
+  static Future<void> initializeCamera() async {
     // Ensure that plugin services are initialized so that `availableCameras()`
     // can be called before `runApp()`
     WidgetsFlutterBinding.ensureInitialized();

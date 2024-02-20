@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:planetsort/component/planetsort_button.dart';
-import 'package:planetsort/component/planetsort_textfield.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
-import 'package:planetsort/pages/home_page.dart';
+import 'package:planetsort/component/planetsort_textfield.dart';
 import 'package:planetsort/pages/main_page.dart';
 import 'package:planetsort/pages/signup_page.dart';
 import 'package:planetsort/utils/constant.dart';
@@ -32,9 +31,10 @@ class _LoginPageState extends State<LoginPage> {
         );
         if (userCredential.user != null && mounted) {
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const MainView()),
-          );
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MainView(),
+              ));
         }
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
