@@ -4,8 +4,8 @@ import 'package:planetsort/repository/camera_app_singleton.dart';
 import 'package:camera/camera.dart';
 
 class Camera_View_Model extends ChangeNotifier {
-  Camera_App_Singleton appState = locator.get();
-  String randomData = '';
+  final Camera_App_Singleton appState = locator.get<Camera_App_Singleton>();
+  //String randomData = '';
 
   CameraController getController() {
     return appState.getController();
@@ -24,7 +24,7 @@ class Camera_View_Model extends ChangeNotifier {
       // Define the resolution to use.
       ResolutionPreset.medium,
     ));
-    
+
     // Next, initialize the controller. This returns a Future.
     appState.setInitializeControllerFuture(getController().initialize());
   }
@@ -38,7 +38,7 @@ class Camera_View_Model extends ChangeNotifier {
     appState.setImagePath(imagePath);
   }
 
-  Future<void> takePhoto() async{
+  Future<void> takePhoto() async {
     // Take the Picture in a try / catch block. If anything goes wrong,
     // catch the error.
     try {
@@ -50,9 +50,11 @@ class Camera_View_Model extends ChangeNotifier {
       // Attempt to take a picture and get the file `image`
       // where it was saved.
       final image = await getController().takePicture();
-      
+
+      print('Image: $image');
       //if (!mounted) return;
       appState.setImagePath(image.path);
+      notifyListeners();
 
       //viewModel.setImagePath(image.path);
       // If the picture was taken, display it on a new screen.
