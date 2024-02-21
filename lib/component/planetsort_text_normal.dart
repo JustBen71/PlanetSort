@@ -23,16 +23,16 @@ class PlanetSortText extends StatelessWidget {
     return Expanded(
       child: Column(children: [
         Text(
-        overflow: TextOverflow.visible,
-        data,
-        style: TextStyle(
-          color: color,
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          fontFamily: fontFamily,
+          overflow: TextOverflow.visible,
+          data,
+          style: TextStyle(
+            color: color,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            fontFamily: fontFamily,
+          ),
+          softWrap: true,
         ),
-        softWrap: true,
-      ),
       ],)
       
     );
