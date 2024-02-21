@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:planetsort/models/waste.dart';
-import 'package:planetsort/services/waste_service.dart';
+import 'package:planetsort/repository/waste_service.dart';
 
 class WasteViewModel extends ChangeNotifier {
   final WasteService _wasteService = WasteService();
