@@ -29,7 +29,7 @@ class CameraPageState extends State<CameraPage> {
 
   @override
   void dispose() {
-    //viewModel.disposeCamera();
+    viewModel.disposeCamera();
     super.dispose();
   }
 
