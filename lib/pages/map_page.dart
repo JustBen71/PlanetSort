@@ -18,7 +18,18 @@ class MapPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: green,
       ),
-      //body: 
+      body: Container(
+        alignment: Alignment.center,
+        child: const SizedBox(
+          height: 500,
+          width: 350,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: beige
+            ),
+          ),
+        )
+        ) 
     );
   }
 }
