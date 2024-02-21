@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Waste {
   final String id;
   final String name;
@@ -25,7 +27,7 @@ class Waste {
       'advice': advice,
       'carbon_footprint': carbonFootprint,
       'user_id': userId,
-      'created_at': createdAt.toIso8601String(),
+      'created_at': Timestamp.fromDate(createdAt),
     };
   }
 
@@ -37,7 +39,7 @@ class Waste {
       advice: map['advice'],
       carbonFootprint: map['carbon_footprint'],
       userId: map['user_id'],
-      createdAt: DateTime.parse(map['created_at']),
+      createdAt: (map['created_at'] as Timestamp).toDate(),
     );
   }
 }
