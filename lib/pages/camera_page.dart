@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
 import 'package:planetsort/locator.dart';
+import 'package:planetsort/repository/camera_app_singleton.dart';
 import 'package:planetsort/view_model/camera_view_model.dart';
 
 class CameraPage extends StatefulWidget {
@@ -17,6 +18,7 @@ class CameraPage extends StatefulWidget {
 }
 
 class CameraPageState extends State<CameraPage> {
+  Camera_App_Singleton appState = locator.get();
   final Camera_View_Model viewModel = locator.get();
 
   @override
@@ -27,19 +29,24 @@ class CameraPageState extends State<CameraPage> {
 
   @override
   void dispose() {
-    viewModel.disposeCamera();
+    //viewModel.disposeCamera();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // You must wait until the controller is initialized before displaying the
+      // camera preview. Use a FutureBuilder to display a loading spinner until the
+      // controller has finished initializing.
       body: FutureBuilder<void>(
         future: viewModel.getInitializeControllerFuture(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
+            // If the Future is complete, display the preview. 
             return CameraPreview(viewModel.getController());
           } else {
+            // Otherwise, display a loading indicator.
             return const Center(child: CircularProgressIndicator());
           }
         },

@@ -51,22 +51,9 @@ class Camera_View_Model extends ChangeNotifier {
       // where it was saved.
       final image = await getController().takePicture();
 
-      print('Image: $image');
       //if (!mounted) return;
       appState.setImagePath(image.path);
       notifyListeners();
-
-      //viewModel.setImagePath(image.path);
-      // If the picture was taken, display it on a new screen.
-      /*await Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => PicturePage(
-            // Pass the automatically generated path to
-            // the PicturePage widget.
-            imagePath: image.path,
-          ),
-        ),
-      );*/
     } catch (e) {
       // If an error occurs, log the error to the console.
       print(e);
