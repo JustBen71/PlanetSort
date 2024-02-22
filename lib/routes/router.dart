@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:planetsort/pages/camera_page.dart';
 import 'package:planetsort/pages/home_page.dart';
 import 'package:planetsort/pages/picture_page.dart';
+import 'package:planetsort/pages/privacy_statement_page.dart';
 import 'package:planetsort/utils/camera.dart';
 
 Route<dynamic> generateRoute(String name) {
@@ -21,6 +22,10 @@ Route<dynamic> generateRoute(String name) {
             // the PicturePage widget.
             ),
       );
+      case privacyStatementPage:
+      return MaterialPageRoute(
+        builder: (context) => const PrivacyStatementPage(),
+      );
     default:
       return MaterialPageRoute(
         builder: (context) => const HomePage(),
@@ -31,3 +36,4 @@ Route<dynamic> generateRoute(String name) {
 const String cameraPage = 'Camera';
 const String homePage = 'Home';
 const String picturePage = 'Picture';
+const String privacyStatementPage = "PrivacyStatement";
