@@ -130,7 +130,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Future<void> _logout() async {
     try {
       await FirebaseAuth.instance.signOut();
-      Navigator.of(context, rootNavigator: true).push(generateRoute("Sign_in"));
+      Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(generateRoute("Sign_in"), (Route<dynamic> route) => false);
     } catch (e) {
       print('Error logging out: $e');
     }
