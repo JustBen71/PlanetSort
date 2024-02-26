@@ -7,6 +7,7 @@ import 'package:planetsort/component/planetsort_button.dart';
 import 'package:planetsort/component/planetsort_datefield.dart';
 import 'package:planetsort/component/planetsort_textfield.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
+import 'package:planetsort/routes/router.dart';
 import 'package:planetsort/utils/constant.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -195,6 +196,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
             PlanetSortButton(
               onPressed: _updateUserProfile,
               label: 'Edit',
+            ),
+            PlanetSortButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).push(generateRoute("PrivacyStatement"));
+              },
+              label: 'Privacy Statement',
             ),
           ],
         ),
