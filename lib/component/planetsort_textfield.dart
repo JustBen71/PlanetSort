@@ -10,7 +10,9 @@ class PlanetSortTextField extends StatelessWidget {
       this.validator,
       required this.obscureText,
       required this.placeholder,
-      this.onSaved});
+      this.onSaved, 
+      this.disabled = false,
+      });
 
   final TextEditingController controller;
   final String placeholder;
@@ -18,6 +20,7 @@ class PlanetSortTextField extends StatelessWidget {
   final bool obscureText;
   final String? Function(String?)? validator;
   final FormFieldSetter<String>? onSaved;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,10 @@ class PlanetSortTextField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       validator: validator,
+      readOnly: disabled,
+      style:  disabled ? TextStyle(
+        foreground: Paint()..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6),
+      ) : const TextStyle(),
       decoration: InputDecoration(
         prefixIcon: Icon(icon, color: green),
         hintText: placeholder,

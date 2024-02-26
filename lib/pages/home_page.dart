@@ -1,11 +1,27 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:planetsort/component/planetsort_dailytips.dart';
 
-import 'package:planetsort/component/planetsort_text_normal.dart';
 import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/utils/constant.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String username = "";
+
+  @override
+  void initState()
+  {
+    super.initState();
+    _loadUserInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +32,23 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  Future<void> _loadUserInfo() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+      setState(() {
+        username = userData['firstName'];
+      });
+    }
+  }
+
   AppBar _buildAppBar() {
     return AppBar(
-      title: const PlanetSortTitleText(
-        data: 'Welcome Mathilde',
+      title: PlanetSortTitleText(
+        data: 'Welcome $username',
         fontSize: sizetitle,
       ),
       backgroundColor: green,
@@ -29,57 +58,27 @@ class HomePage extends StatelessWidget {
 
   Widget _buildBody() {
     return Container(
-        alignment: Alignment.center,
-        color: green,
-        child: const Column(
-          children: <Widget>[
-            PlanetSortTitleText(
-              data: 'You need to scan 3 more wastes',
-              fontSize: sizetitle2,
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+      alignment: Alignment.center,
+      color: green,
+      child: const Column(
+        children: <Widget>[
+          PlanetSortTitleText(
+            data: 'You need to scan 3 more wastes',
+            fontSize: sizetitle2,
+          ),
+          DailyTipWidget(),
+          /*Expanded(
+            child: GridView.count(
+              crossAxisCount: 3,
+              children: List.generate(3, (index) {
+                return Card(
+                  child: Image.asset(''),
+                );
+              }),
             ),
-            Card(
-              color: beige,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(80),
-                      topRight: Radius.circular(80),
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20))),
-              child: ListTile(
-                title: Center(
-                  child: PlanetSortTitleText(
-                    data: 'Daily Tips',
-                    color: green,
-                    fontSize: sizetitle3,
-                  ),
-                ),
-                subtitle: Column(children: [
-                  Row(children: [
-                    PlanetSortText(
-                      data:
-                          'Use public transportation or prefer walking or cycling to reduce your carbon footprint. Use public transportation or prefer walking or cycling to reduce your carbon footprint.',
-                      color: green,
-                      fontSize: paragraph,
-                    )
-                  ])
-                ]),
-                trailing: IconButton(
-                  icon: Icon(Icons.close),
-                  onPressed: null,
-                ),
-              ),
-            ),
-            /*Expanded(
-              child: GridView.count(
-                crossAxisCount: 3,
-                children: List.generate(3, (index) {
-                  return Card(
-                    child: Image.asset(''),
-                  );
-                }),
-              ),
-            ),*/
-          ],
-        ));
+          ),*/
+        ],
+      ));
   }
 }

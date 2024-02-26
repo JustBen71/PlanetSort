@@ -11,12 +11,14 @@ class PlanetSortDateField extends StatefulWidget {
     required this.icon,
     required this.placeholder,
     this.validator,
+    this.disabled = true,
   });
 
   final TextEditingController controller;
   final IconData icon;
   final String placeholder;
   final String? Function(String?)? validator;
+  final bool disabled;
 
   @override
   State<PlanetSortDateField> createState() => _PlanetSortDateFieldState();
@@ -43,6 +45,9 @@ class _PlanetSortDateFieldState extends State<PlanetSortDateField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
+      style: widget.disabled ? TextStyle(
+        foreground: Paint()..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6),
+      ) : const TextStyle(),
       decoration: InputDecoration(
         prefixIcon: Icon(widget.icon, color: green),
         hintText: widget.placeholder,
@@ -55,7 +60,9 @@ class _PlanetSortDateFieldState extends State<PlanetSortDateField> {
       ),
       readOnly: true,
       validator: widget.validator,
-      onTap: _pickDate,
+      onTap: widget.disabled ? () {
+        
+      } : _pickDate,
     );
   }
 }

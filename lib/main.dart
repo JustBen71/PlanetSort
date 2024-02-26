@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 
 import 'package:planetsort/locator.dart';
 import 'package:planetsort/pages/login_page.dart';
@@ -16,6 +17,9 @@ void main() async {
   Camera.initializeCamera();
   initLocator();
   User? user = FirebaseAuth.instance.currentUser;
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(MyApp(user: user));
 }
 
