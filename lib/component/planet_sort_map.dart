@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:planetsort/component/planetsort_button.dart';
 import 'package:planetsort/component/planetsort_text_normal.dart';
-import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/utils/constant.dart';
-
 import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:http/http.dart' as http;
 
 class LocationMapWidget extends StatefulWidget {
@@ -57,29 +55,28 @@ class _LocationMapWidgetState extends State<LocationMapWidget> {
     bool serviceEnabled;
     LocationPermission permission;
 
-    // Vérifie si les services de localisation sont activés
+    // Checks if location services are enabled
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // Les services de localisation ne sont pas activés, ne continuez pas
-      return Future.error('Les services de localisation sont désactivés.');
+      // Location services are not enabled, do not continue
+      return Future.error('Location services are disabled.');
     }
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        // Les permissions sont refusées
-        return Future.error('Les permissions de localisation sont refusées');
+        // Permissions are denied
+        return Future.error('Location permissions are denied.');
       }
     }
     
     if (permission == LocationPermission.deniedForever) {
-      // Les permissions sont définitivement refusées
-      return Future.error(
-          'Les permissions de localisation sont définitivement refusées, nous ne pouvons pas demander les permissions.');
+      // Permissions are permanently denied
+      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
     } 
 
-    // Quand on a la permission, on obtient la position actuelle
+    // When we have permission, we get the current position
     final position = await Geolocator.getCurrentPosition();
     setState(() {
       currentPosition = LatLng(position.latitude, position.longitude);
@@ -107,20 +104,45 @@ class _LocationMapWidgetState extends State<LocationMapWidget> {
                     ), 
                     backgroundColor: green,
                     content: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                           children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                PlanetSortText(data: "Name: ${center["tags"]["name"] ?? "Unknown sorting center"}"),
-                              ]
+                                Expanded(
+                                  child:
+                                    Text("Name : ${center["tags"]["name"] ?? "Unknown sorting center"}",
+                                      style: const TextStyle(
+                                          fontFamily: 'RockNRoll',
+                                          color: beige,
+                                          fontSize: 14,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                      softWrap: true,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    )
+                                )
+                              ],
+                            ),
+                            const Row(
+                              children: [
+                                SingleChildScrollView(
+                                  child: 
+                                    PlanetSortText(data: "Location :", textAlign: TextAlign.left),
+                                ),
+                              ],
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 GestureDetector(
                                   onTap: () => {launchUrlString("https://www.google.com/maps/search/?api=1&query=${center['lat']},${center['lon']}")},
                                   child: Text(
-                                    "Location : ${center['lat']},${center['lon']}",
+                                    "${center['lat']}, ${center['lon']}",
                                     style: const TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: Colors.blue,
                                       fontFamily: 'RockNRoll',
                                       color: Colors.blue,
                                     ),
@@ -129,8 +151,12 @@ class _LocationMapWidgetState extends State<LocationMapWidget> {
                               ],
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const PlanetSortText(data: "Cans Recycling ", ),
+                                const SingleChildScrollView(
+                                  child: 
+                                    PlanetSortText(data: "Cans Recycling", textAlign: TextAlign.left),
+                                ),
                                 Icon(
                                   center['tags']['recycling:cans'] == 'yes' ? Icons.check_box : Icons.check_box_outline_blank,
                                   color: beige,
@@ -138,8 +164,12 @@ class _LocationMapWidgetState extends State<LocationMapWidget> {
                               ],
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const PlanetSortText(data: "Papers Recycling ", ),
+                                const SingleChildScrollView(
+                                  child: 
+                                    PlanetSortText(data: "Papers Recycling", textAlign: TextAlign.left),
+                                ),
                                 Icon(
                                   center['tags']['recycling:paper'] == 'yes' ? Icons.check_box : Icons.check_box_outline_blank,
                                   color: beige,
@@ -147,8 +177,12 @@ class _LocationMapWidgetState extends State<LocationMapWidget> {
                               ],
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const PlanetSortText(data: "Plastics Recycling ", ),
+                                const SingleChildScrollView(
+                                  child: 
+                                    PlanetSortText(data: "Plastics Recycling", textAlign: TextAlign.left),
+                                ),
                                 Icon(
                                   center['tags']['recycling:plastic'] == 'yes' ? Icons.check_box : Icons.check_box_outline_blank,
                                   color: beige,
@@ -156,8 +190,12 @@ class _LocationMapWidgetState extends State<LocationMapWidget> {
                               ],
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const PlanetSortText(data: "Glass Recycling ", ),
+                                const SingleChildScrollView(
+                                  child: 
+                                    PlanetSortText(data: "Glass Recycling", textAlign: TextAlign.left),
+                                ),
                                 Icon(
                                   center['tags']['recycling:glass_bottles'] == 'yes' ? Icons.check_box : Icons.check_box_outline_blank,
                                   color: beige,
@@ -167,16 +205,10 @@ class _LocationMapWidgetState extends State<LocationMapWidget> {
                           ],
                         ),
                     actions: <Widget>[
-                      TextButton(
-                        child: const Text(
-                          "Close",
-                          style: TextStyle(
-                            fontFamily: 'RockNRoll',
-                            color: beige,
-                          ),
-                        ),
+                      PlanetSortButton(
                         onPressed: () => Navigator.of(context).pop(),
-                      ),
+                        label: 'Close',
+                      )
                     ],
                   ),
                 );
@@ -186,11 +218,11 @@ class _LocationMapWidgetState extends State<LocationMapWidget> {
           );
         }).toList();
         markers.add(Marker(
-                width: 80.0,
-                height: 80.0,
-                point: currentPosition!, 
-                child: const Icon(Icons.location_pin, color: dark, ),
-              ));
+          width: 80.0,
+          height: 80.0,
+          point: currentPosition!, 
+          child: const Icon(Icons.location_pin, color: dark, ),
+        ));
       });
     });
   }
@@ -207,7 +239,7 @@ class _LocationMapWidgetState extends State<LocationMapWidget> {
         ),
         children: [
           TileLayer(
-              urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+              urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
           ),
           MarkerLayer(
             markers: markers
