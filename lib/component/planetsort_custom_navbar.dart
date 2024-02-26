@@ -58,13 +58,13 @@ class _PlanetSortCustomNavBarState extends State<PlanetSortCustomNavBar> {
         ),
         TabItem(
             icon: Icon(
-                (currentIndex == 3 ? Icons.person_2 : Icons.person_2_outlined),
-                color: green),
-            title: "Profile"),
-        TabItem(
-            icon: Icon((currentIndex == 4 ? Icons.map : Icons.map_outlined),
+                (currentIndex == 3 ? Icons.map : Icons.map_outlined),
                 color: green),
             title: "Map"),
+        TabItem(
+            icon: Icon((currentIndex == 4 ? Icons.person_2 : Icons.person_2_outlined),
+                color: green),
+            title: "Profile"),
       ],
       initialActiveIndex: currentIndex,
       onTap: (int i) => setState(() {

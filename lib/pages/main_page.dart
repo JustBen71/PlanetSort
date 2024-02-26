@@ -60,9 +60,9 @@ class _MainViewState extends State<MainView> {
           return const PicturePage();
         }
       case 3:
-        return const EditProfilePage();
-      case 4:
         return const MapPage();
+      case 4:
+        return const EditProfilePage();
       default : return const HomePage();
     }
   }
