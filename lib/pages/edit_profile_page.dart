@@ -38,15 +38,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
           .collection('users')
           .doc(user.uid)
           .get();
-      setState(() {
-        _firstNameController.text = userData['firstName'];
-        _lastNameController.text = userData['lastName'];
-        _birthDateController.text = userData['birthDate'];
-      });
+      if (mounted) {
+        setState(() {
+          _firstNameController.text = userData['firstName'];
+          _lastNameController.text = userData['lastName'];
+          _birthDateController.text = userData['birthDate'];
+        });
+      }
     }
   }
 
   Future<void> _updateUserProfile() async {
+    if (!mounted) return;
+
     User? user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       ScaffoldMessenger.of(context).showSnackBar(
