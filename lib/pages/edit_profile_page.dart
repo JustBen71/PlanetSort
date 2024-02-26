@@ -25,6 +25,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   late final TextEditingController _oldPasswordController = _controllers[3];
   late final TextEditingController _newPasswordController = _controllers[4];
   late final TextEditingController _confirmPasswordController = _controllers[5];
+  bool disabled = true;
+  String labelEdit = "Edit";
 
   @override
   void initState() {
@@ -144,6 +146,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.dispose();
   }
 
+  void _disableField()
+  {
+    setState(() {
+      disabled = false;
+      labelEdit = "Confirm";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,6 +175,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   icon: Icons.person,
                   placeholder: 'First Name',
                   obscureText: false,
+                  disabled: disabled,
                 )),
             Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
@@ -172,12 +183,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     controller: _lastNameController,
                     icon: Icons.person,
                     obscureText: false,
+                    disabled: disabled,
                     placeholder: 'Last Name')),
             Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: PlanetSortDateField(
                     controller: _birthDateController,
                     icon: Icons.calendar_today,
+                    disabled: disabled,
                     placeholder: 'Birth Date')),
             Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
@@ -185,6 +198,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     controller: _oldPasswordController,
                     icon: Icons.lock,
                     obscureText: true,
+                    disabled: disabled,
                     placeholder: 'Enter actual password')),
             Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
@@ -192,6 +206,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   controller: _newPasswordController,
                   obscureText: true,
                   icon: Icons.lock,
+                  disabled: disabled,
                   placeholder: 'Enter new password',
                 )),
             Padding(
@@ -200,11 +215,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     controller: _confirmPasswordController,
                     icon: Icons.lock,
                     obscureText: true,
+                    disabled: disabled,
                     placeholder: 'Confirm your new password')),
             const SizedBox(height: 20),
-            PlanetSortButton(
-              onPressed: _updateUserProfile,
-              label: 'Edit',
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: PlanetSortButton(
+                onPressed: disabled ? _disableField : _updateUserProfile,
+                label: labelEdit,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
