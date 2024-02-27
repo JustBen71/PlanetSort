@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:planetsort/component/planetsort_dailytips.dart';
+import 'package:planetsort/component/planetsort_tip.dart';
 
 import 'package:planetsort/component/planetsort_text_title.dart';
 import 'package:planetsort/utils/constant.dart';
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
             data: 'You need to scan 3 more wastes',
             fontSize: sizetitle2,
           ),
-          DailyTipWidget(),
+          TipWidget(),
           /*Expanded(
             child: GridView.count(
               crossAxisCount: 3,
