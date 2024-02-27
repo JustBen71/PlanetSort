@@ -63,10 +63,7 @@ class _HomePageState extends State<HomePage> {
       color: green,
       child: const Column(
         children: <Widget>[
-          PlanetSortTitleText(
-            data: 'You need to scan 3 more wastes',
-            fontSize: sizetitle2,
-          ),
+          Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
           TipWidget(),
           /*Expanded(
             child: GridView.count(
