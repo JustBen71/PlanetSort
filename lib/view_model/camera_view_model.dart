@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:planetsort/locator.dart';
@@ -24,7 +23,7 @@ class Camera_View_Model extends ChangeNotifier {
       // Get a specific camera from the list of available cameras.
       camera,
       // Define the resolution to use.
-      ResolutionPreset.medium,
+      ResolutionPreset.high,
     ));
 
     // Next, initialize the controller. This returns a Future.
@@ -37,7 +36,7 @@ class Camera_View_Model extends ChangeNotifier {
   }
 
   void setImagePath(String imagePath) {
-    appState.setImagePath(imagePath);
+    appState.setBase64Image(imagePath);
   }
 
   Future<void> takePhoto() async {
@@ -51,13 +50,13 @@ class Camera_View_Model extends ChangeNotifier {
 
       // Attempt to take a picture and get the file `image`
       // where it was saved.
-      final image = await getController().takePicture();
+      XFile image = await getController().takePicture();
 
-      List<int> imageBytes = await File(image.path).readAsBytes();
+      List<int> imageBytes = await image.readAsBytes();
 
       String base64Image = base64Encode(imageBytes);
 
-      appState.setImagePath(base64Image);
+      appState.setBase64Image(base64Image);
       notifyListeners();
     } catch (e) {
       // If an error occurs, log the error to the console.

@@ -8,6 +8,7 @@ class PlanetSortText extends StatelessWidget {
   final double fontSize;
   final FontWeight fontWeight;
   final String fontFamily;
+  final TextAlign textAlign;
 
   const PlanetSortText({
     super.key,
@@ -16,12 +17,14 @@ class PlanetSortText extends StatelessWidget {
     this.fontSize = 14,
     this.fontWeight = FontWeight.normal,
     this.fontFamily = 'RockNRoll',
+    this.textAlign = TextAlign.left,
   });
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(children: [
+        child: Column(
+      children: [
         Text(
           overflow: TextOverflow.visible,
           data,
@@ -31,10 +34,10 @@ class PlanetSortText extends StatelessWidget {
             fontWeight: fontWeight,
             fontFamily: fontFamily,
           ),
+          textAlign: textAlign,
           softWrap: true,
         ),
-      ],)
-      
-    );
+      ],
+    ));
   }
 }

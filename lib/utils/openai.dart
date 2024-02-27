@@ -10,7 +10,7 @@ class OpenAiClient {
     double? latitude,
     double? longitude,
   }) async {
-    await dotenv.load();
+    await dotenv.load(fileName: '.env');
     final apiKey = dotenv.env['OPENAI_API_KEY'];
     if (apiKey == null) {
       print('Error: OpenAI API key not found in environment variables');
@@ -35,11 +35,15 @@ class OpenAiClient {
           "role": "user",
           "content": [
             {"type": "text", "text": prompt},
-            if (base64Image != null) {"type": "image", "data": base64Image},
+            if (base64Image != null)
+              {
+                "type": "image_url",
+                "image_url": {"url": 'data:image/jpeg;base64,$base64Image'}
+              },
           ],
         },
       ],
-      "max_tokens": 300,
+      "max_tokens": 4096,
     };
 
     try {
@@ -47,10 +51,12 @@ class OpenAiClient {
           await http.post(uri, headers: headers, body: json.encode(payload));
 
       if (response.statusCode == 200) {
-        final responseData = json.decode(response.body);
+        String responseBody = response.body;
+        final responseData = json.decode(responseBody);
+        print(responseData);
         return responseData;
       } else {
-        print('Failed to analyze image: ${response.statusCode}');
+        print('Failed to analyze image: ${response.body}');
         return {};
       }
     } catch (e) {

@@ -1,12 +1,12 @@
 import 'package:camera/camera.dart';
 
 class Camera_App_Singleton {
-  String imagePath = "";
+  String imageBase64 = "";
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
 
-  void setImagePath(String newPath) {
-    imagePath = newPath;
+  void setBase64Image(String newBase64) {
+    imageBase64 = newBase64;
   }
 
   CameraController getController() {
