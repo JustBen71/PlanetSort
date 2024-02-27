@@ -55,10 +55,15 @@ dependencies:
   url_launcher: ^6.2.5
   geolocator: ^11.0.0
   geocoding: ^2.2.0
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.4.4
+  firebase_auth_mocks: ^0.13.0
+  rxdart: ^0.27.7
+  fake_cloud_firestore: ^2.4.8
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
