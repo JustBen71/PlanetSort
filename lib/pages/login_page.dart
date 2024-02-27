@@ -10,17 +10,25 @@ import 'package:planetsort/pages/signup_page.dart';
 import 'package:planetsort/utils/constant.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, required this.firebase});
+  final FirebaseAuth firebase;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  late FirebaseAuth _auth;
+  
+
+  @override
+  void initState()
+  {
+    _auth = widget.firebase;
+  }
 
   void _tryLogin() async {
     if (_formKey.currentState!.validate()) {
@@ -46,6 +54,8 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +76,7 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
                 PlanetSortTextField(
+                  key: const Key('email'),
                   controller: _emailController,
                   icon: Icons.person,
                   obscureText: false,
@@ -74,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
                 PlanetSortTextField(
+                  key: const Key('passwordField'),
                   controller: _passwordController,
                   icon: Icons.lock,
                   placeholder: 'Password',
@@ -83,6 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
                 PlanetSortButton(
+                  key: const Key("loginButton"),
                   label: 'Sign in',
                   onPressed: _tryLogin,
                 ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:planetsort/pages/camera_page.dart';
@@ -29,7 +30,7 @@ Route<dynamic> generateRoute(String name) {
       );
       case sign_in:
       return MaterialPageRoute(
-        builder: (context) => const LoginPage(),
+        builder: (context) => LoginPage(firebase: FirebaseAuth.instance,),
       );
     default:
       return MaterialPageRoute(

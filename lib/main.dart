@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: user != null ? const MainView() : const LoginPage(),
+      home: user != null ? const MainView() : LoginPage(firebase: FirebaseAuth.instance,),
       routes: {
-        '/login': (context) => const LoginPage(),
+        '/login': (context) => LoginPage(firebase: FirebaseAuth.instance),
         '/register': (context) => const RegisterPage(),
         '/main': (context) => const MainView(),
         // Ajoutez ici d'autres routes nécessitant une authentification
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             if (user != null) {
               return const MainView();
             } else {
-              return const LoginPage();
+              return LoginPage(firebase: FirebaseAuth.instance);
             }
           },
         );
