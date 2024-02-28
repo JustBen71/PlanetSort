@@ -97,6 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
             children: <Widget>[
               const SizedBox(height: 20),
               PlanetSortTextField(
+                key: const Key('firstname'),
                 controller: _firstNameController,
                 icon: Icons.person,
                 obscureText: false,
@@ -110,6 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
+                key: const Key('lastname'),
                 controller: _lastNameController,
                 icon: Icons.person,
                 obscureText: false,
@@ -123,9 +125,11 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortDateField(
+                key: const Key('birthdate'),
                 controller: _birthDateController,
                 icon: Icons.calendar_today,
                 placeholder: 'Birth date',
+                disabled: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your birth date';
@@ -135,6 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
+                key: const Key('email'),
                 controller: _emailController,
                 icon: Icons.email,
                 obscureText: false,
@@ -150,6 +155,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
+                key: const Key('password'),
                 controller: _passwordController,
                 icon: Icons.lock,
                 placeholder: 'Password',
@@ -165,6 +171,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               PlanetSortTextField(
+                key: const Key('confirmpassword'),
                 controller: _confirmPasswordController,
                 icon: Icons.lock,
                 placeholder: 'Confirm password',
@@ -178,6 +185,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
               PlanetSortButton(
+                key: const Key('signupbutton'),
                 label: "Sign up",
                 onPressed: _trySignUp,
               ),

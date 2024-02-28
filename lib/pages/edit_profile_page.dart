@@ -171,6 +171,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: PlanetSortTextField(
+                  key: const Key('firstname'),
                   controller: _firstNameController,
                   icon: Icons.person,
                   placeholder: 'First Name',
@@ -180,6 +181,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: PlanetSortTextField(
+                    key: const Key('lastname'),
                     controller: _lastNameController,
                     icon: Icons.person,
                     obscureText: false,
@@ -188,6 +190,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: PlanetSortDateField(
+                    key: const Key('birthdate'),
                     controller: _birthDateController,
                     icon: Icons.calendar_today,
                     disabled: disabled,
@@ -195,6 +198,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: PlanetSortTextField(
+                    key: const Key('actualpassword'),
                     controller: _oldPasswordController,
                     icon: Icons.lock,
                     obscureText: true,
@@ -203,6 +207,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: PlanetSortTextField(
+                  key: const Key('newpassword'),
                   controller: _newPasswordController,
                   obscureText: true,
                   icon: Icons.lock,
@@ -212,6 +217,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: PlanetSortTextField(
+                    key: const Key('confirmnewpassword'),
                     controller: _confirmPasswordController,
                     icon: Icons.lock,
                     obscureText: true,
@@ -221,6 +227,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: PlanetSortButton(
+                key: const Key('editprofilebutton'),
                 onPressed: disabled ? _disableField : _updateUserProfile,
                 label: labelEdit,
               ),
@@ -228,6 +235,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: PlanetSortButton(
+                key: const Key('logoutbutton'),
                 onPressed: _logout,
                 label: 'Sign Out',
               ),

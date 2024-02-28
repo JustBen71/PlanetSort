@@ -11,7 +11,7 @@ class PlanetSortDateField extends StatefulWidget {
     required this.icon,
     required this.placeholder,
     this.validator,
-    this.disabled = true,
+    this.disabled = false,
   });
 
   final TextEditingController controller;
