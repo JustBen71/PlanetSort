@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:planetsort/locator.dart';
 import 'package:planetsort/repository/tip_app_singleton.dart';
 import 'package:planetsort/utils/constant.dart';
@@ -12,7 +13,8 @@ class TipWidget extends StatefulWidget {
 }
 
 class _TipWidgetState extends State<TipWidget> {
-  bool _isVisible = true; // Initialized to true so that the widget is visible initially
+  bool _isVisible =
+      true; // Initialized to true so that the widget is visible initially
   TipSingleton appState = locator.get();
   final TipViewModel viewModel = locator.get();
 
@@ -27,41 +29,37 @@ class _TipWidgetState extends State<TipWidget> {
           // Return an empty Container if _isVisible is false
           if (!_isVisible) {
             return GestureDetector(
-              onTap: () {
-                setState(() {
-                  _isVisible = true;
-                });
-              },
-              child: Card(
-                color: beige,
-                child: Padding(
-                  padding:  const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Tip : ${appState.currentTip.category} ',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "RockNRoll",
-                              color: green,
-                            ),
-                            textAlign: TextAlign.justify,
-                          ),
-                          const Icon(
-                            Icons.arrow_circle_down,
-                            color: green,
-                          ),
-                        ]
-                      )
-                    ]
-                  ),
-                )
-              )
-            );
+                onTap: () {
+                  setState(() {
+                    _isVisible = true;
+                  });
+                },
+                child: Card(
+                    color: beige,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Tip : ${appState.currentTip.category} ',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "RockNRoll",
+                                      color: green,
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_circle_down,
+                                    color: green,
+                                  ),
+                                ])
+                          ]),
+                    )));
           }
           return Card(
             color: beige,
@@ -88,7 +86,7 @@ class _TipWidgetState extends State<TipWidget> {
                           ),
                         ),
                         const Icon(
-                          Icons.arrow_circle_up, 
+                          Icons.arrow_circle_up,
                           color: green,
                         ),
                       ],
@@ -96,7 +94,10 @@ class _TipWidgetState extends State<TipWidget> {
                     const Padding(padding: EdgeInsets.all(5.0)),
                     Text(
                       appState.currentTip.tip,
-                      style: const TextStyle(color: green, fontFamily: "RockNRoll", ),
+                      style: const TextStyle(
+                        color: green,
+                        fontFamily: "RockNRoll",
+                      ),
                       textAlign: TextAlign.justify,
                     ),
                   ],
