@@ -23,7 +23,8 @@ class PlanetSortText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(children: [
+        child: Column(
+      children: [
         Text(
           overflow: TextOverflow.visible,
           data,
@@ -36,8 +37,7 @@ class PlanetSortText extends StatelessWidget {
           textAlign: textAlign,
           softWrap: true,
         ),
-      ],)
-      
-    );
+      ],
+    ));
   }
 }
