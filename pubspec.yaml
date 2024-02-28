@@ -55,6 +55,7 @@ dependencies:
   url_launcher: ^6.2.5
   geolocator: ^11.0.0
   geocoding: ^2.2.0
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
@@ -87,6 +88,7 @@ flutter:
 
   assets:
     - assets/tips.json
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

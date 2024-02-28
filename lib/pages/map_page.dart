@@ -11,26 +11,25 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: green,
-      appBar: AppBar(
-        title: const PlanetSortTitleText(
-          data: "Map",
-          fontSize: sizetitle,
-          color: beige,
-        ),
-        centerTitle: true,
         backgroundColor: green,
-      ),
-      body: Column(
-        children: [
+        appBar: AppBar(
+          title: const PlanetSortTitleText(
+            data: "Map",
+            fontSize: sizetitle,
+            color: beige,
+          ),
+          centerTitle: true,
+          backgroundColor: green,
+        ),
+        body: Column(children: [
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              PlanetSortTitleText(data: "Different waste sorting point around you"),
+              PlanetSortTitleText(
+                  data: "Different waste sorting point around you"),
             ],
           ),
           Row(
@@ -43,7 +42,9 @@ class _MapPageState extends State<MapPage> {
               )
             ],
           ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 5),),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 5),
+          ),
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -51,7 +52,7 @@ class _MapPageState extends State<MapPage> {
                 Icons.recycling,
                 color: beige,
               ),
-              SizedBox(width: 5), // Space between icon and text
+              SizedBox(width: 5.0), // Space between icon and text
               Text(
                 ": Sorting center",
                 style: TextStyle(
@@ -60,9 +61,7 @@ class _MapPageState extends State<MapPage> {
                 ),
               ),
             ],
-          )
-        ]
-      )
-    );
+          ),
+        ]));
   }
 }
