@@ -7,6 +7,9 @@ class Waste {
   final String advice;
   final String carbonFootprint;
   final String userId;
+  final String openAiRequest;
+  final String openAiResponse;
+  final Map<String, dynamic> additionalProperties;
   final DateTime createdAt;
 
   Waste({
@@ -16,6 +19,9 @@ class Waste {
     required this.advice,
     required this.carbonFootprint,
     required this.userId,
+    required this.openAiRequest,
+    required this.openAiResponse,
+    required this.additionalProperties,
     required this.createdAt,
   });
 
@@ -27,6 +33,9 @@ class Waste {
       'advice': advice,
       'carbon_footprint': carbonFootprint,
       'user_id': userId,
+      'openai_request': openAiRequest,
+      'openai_response': openAiResponse,
+      'additional_properties': additionalProperties,
       'created_at': Timestamp.fromDate(createdAt),
     };
   }
@@ -39,6 +48,9 @@ class Waste {
       advice: map['advice'],
       carbonFootprint: map['carbon_footprint'],
       userId: map['user_id'],
+      openAiRequest: map['openai_request'],
+      openAiResponse: map['openai_response'],
+      additionalProperties: map['additional_properties'],
       createdAt: (map['created_at'] as Timestamp).toDate(),
     );
   }

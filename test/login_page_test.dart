@@ -1,14 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+
 import 'package:planetsort/component/planetsort_button.dart';
 import 'package:planetsort/component/planetsort_datefield.dart';
 import 'package:planetsort/component/planetsort_textfield.dart';
-import 'package:planetsort/pages/edit_profile_page.dart';
 import 'package:planetsort/pages/login_page.dart';
 import 'package:planetsort/pages/signup_page.dart';
 
@@ -27,12 +26,15 @@ class MockFirebaseAuth extends Mock implements FirebaseAuth {
     required String? email,
     required String? password,
   }) =>
-  super.noSuchMethod(
-      Invocation.method(#createUserWithEmailAndPassword, [email, password]),
-      returnValue: Future.value(MockUserCredential()));
+      super.noSuchMethod(
+          Invocation.method(#createUserWithEmailAndPassword, [email, password]),
+          returnValue: Future.value(MockUserCredential()));
 }
+
 class MockFirebaseApp extends Mock implements FirebaseApp {}
+
 class MockFirebaseUser extends Mock implements User {}
+
 class MockUserCredential extends Mock implements UserCredential {}
 
 void main() async {
@@ -42,11 +44,13 @@ void main() async {
     firebase = MockFirebaseAuth();
     mockUserCredential = MockUserCredential();
   });
-  group('Authentification test', () { 
+  group('Authentification test', () {
     testWidgets('Check page loading', (WidgetTester tester) async {
-
       // Render the widget.
-      await tester.pumpWidget(MaterialApp(home: LoginPage(firebase: firebase,)));
+      await tester.pumpWidget(MaterialApp(
+          home: LoginPage(
+        firebase: firebase,
+      )));
 
       // Verify the output.
       expect(find.text('Sign in'), findsExactly(2));
@@ -56,15 +60,19 @@ void main() async {
     });
 
     testWidgets('Check login connexion', (WidgetTester tester) async {
-      
-      when(firebase.signInWithEmailAndPassword(email: 'coucou@test.fr', password: 'test1234'))
+      when(firebase.signInWithEmailAndPassword(
+              email: 'coucou@test.fr', password: 'test1234'))
           .thenAnswer((_) async => mockUserCredential);
-      
+
       // Render the widget.
-      await tester.pumpWidget(MaterialApp(home: LoginPage(firebase: firebase,)));
+      await tester.pumpWidget(MaterialApp(
+          home: LoginPage(
+        firebase: firebase,
+      )));
 
       await tester.enterText(find.byKey(const Key('email')), 'coucou@test.fr');
-      await tester.enterText(find.byKey(const Key('passwordField')), 'test1234');
+      await tester.enterText(
+          find.byKey(const Key('passwordField')), 'test1234');
       await tester.tap(find.byKey(const Key('loginButton')));
       await tester.pumpAndSettle();
 
@@ -72,7 +80,6 @@ void main() async {
     });
 
     testWidgets('Check register page loading', (WidgetTester tester) async {
-      
       // Render the widget.
       await tester.pumpWidget(const MaterialApp(home: SignUpPage()));
 
@@ -84,12 +91,10 @@ void main() async {
     });
 
     testWidgets('Check register', (WidgetTester tester) async {
-
       when(firebase.createUserWithEmailAndPassword(
-        email: 'coucou@test.fr', 
-        password: 'test1234'
-      )).thenAnswer((_) async => mockUserCredential);
-      
+              email: 'coucou@test.fr', password: 'test1234'))
+          .thenAnswer((_) async => mockUserCredential);
+
       // Render the widget.
       await tester.pumpWidget(const MaterialApp(home: SignUpPage()));
 
@@ -98,7 +103,8 @@ void main() async {
       await tester.enterText(find.byKey(const Key('lastname')), 'mark');
       await tester.enterText(find.byKey(const Key('birthdate')), '2023-10-11');
       await tester.enterText(find.byKey(const Key('password')), 'test1234');
-      await tester.enterText(find.byKey(const Key('confirmpassword')), 'test1234');
+      await tester.enterText(
+          find.byKey(const Key('confirmpassword')), 'test1234');
 
       await tester.tap(find.byKey(const Key('signupbutton')));
       await tester.pumpAndSettle();

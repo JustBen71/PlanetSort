@@ -31,10 +31,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: user != null ? const MainView() : LoginPage(firebase: FirebaseAuth.instance,),
+      home: user != null
+          ? const MainView()
+          : LoginPage(
+              firebase: FirebaseAuth.instance,
+            ),
       routes: {
         '/login': (context) => LoginPage(firebase: FirebaseAuth.instance),
         '/register': (context) => const RegisterPage(),

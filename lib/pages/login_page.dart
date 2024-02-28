@@ -22,11 +22,10 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   late FirebaseAuth _auth;
-  
 
   @override
-  void initState()
-  {
+  void initState() {
+    super.initState();
     _auth = widget.firebase;
   }
 
@@ -53,8 +52,6 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {

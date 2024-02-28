@@ -18,9 +18,8 @@ class LocationMapWidget extends StatefulWidget {
 }
 
 class _LocationMapWidgetState extends State<LocationMapWidget> {
-  MapController mapController = MapController();
+  late MapController mapController = MapController();
   LatLng? currentPosition;
-
   List<Marker> markers = [];
 
   Future<List<dynamic>> fetchRecyclingCenters(
@@ -82,170 +81,175 @@ class _LocationMapWidgetState extends State<LocationMapWidget> {
 
     // When we have permission, we get the current position
     final position = await Geolocator.getCurrentPosition();
-    setState(() {
-      currentPosition = LatLng(position.latitude, position.longitude);
-    });
-    fetchRecyclingCenters(currentPosition!.latitude, currentPosition!.longitude)
-        .then((centers) {
+    if (mounted) {
       setState(() {
-        markers = centers.map((center) {
-          return Marker(
-            width: 80.0,
-            height: 80.0,
-            point: LatLng(center["lat"], center["lon"]),
-            child: GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Center(
-                        child: Text(
-                      "Sorting center",
-                      style: TextStyle(
-                        fontFamily: 'RockNRoll',
-                        color: beige,
-                      ),
-                    )),
-                    backgroundColor: green,
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                                child: Text(
-                              "Name : ${center["tags"]["name"] ?? "Unknown sorting center"}",
-                              style: const TextStyle(
-                                fontFamily: 'RockNRoll',
-                                color: beige,
-                                fontSize: 14,
+        currentPosition = LatLng(position.latitude, position.longitude);
+      });
+
+      fetchRecyclingCenters(
+              currentPosition!.latitude, currentPosition!.longitude)
+          .then((centers) {
+        setState(() {
+          markers = centers.map((center) {
+            return Marker(
+              width: 80.0,
+              height: 80.0,
+              point: LatLng(center["lat"], center["lon"]),
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Center(
+                          child: Text(
+                        "Sorting center",
+                        style: TextStyle(
+                          fontFamily: 'RockNRoll',
+                          color: beige,
+                        ),
+                      )),
+                      backgroundColor: green,
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                  child: Text(
+                                "Name : ${center["tags"]["name"] ?? "Unknown sorting center"}",
+                                style: const TextStyle(
+                                  fontFamily: 'RockNRoll',
+                                  color: beige,
+                                  fontSize: 14,
+                                ),
+                                textAlign: TextAlign.justify,
+                                softWrap: true,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ))
+                            ],
+                          ),
+                          const Row(
+                            children: [
+                              SingleChildScrollView(
+                                child: PlanetSortText(
+                                    data: "Location :",
+                                    textAlign: TextAlign.left),
                               ),
-                              textAlign: TextAlign.justify,
-                              softWrap: true,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ))
-                          ],
-                        ),
-                        const Row(
-                          children: [
-                            SingleChildScrollView(
-                              child: PlanetSortText(
-                                  data: "Location :",
-                                  textAlign: TextAlign.left),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                                onTap: () => {
-                                      launchUrlString(
-                                          "https://www.google.com/maps/search/?api=1&query=${center['lat']},${center['lon']}")
-                                    },
-                                child: Text(
-                                  "${center['lat']}, ${center['lon']}",
-                                  style: const TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: Colors.blue,
-                                    fontFamily: 'RockNRoll',
-                                    color: Colors.blue,
-                                  ),
-                                ))
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const SingleChildScrollView(
-                              child: PlanetSortText(
-                                  data: "Cans Recycling",
-                                  textAlign: TextAlign.left),
-                            ),
-                            Icon(
-                              center['tags']['recycling:cans'] == 'yes'
-                                  ? Icons.check_box
-                                  : Icons.check_box_outline_blank,
-                              color: beige,
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const SingleChildScrollView(
-                              child: PlanetSortText(
-                                  data: "Papers Recycling",
-                                  textAlign: TextAlign.left),
-                            ),
-                            Icon(
-                              center['tags']['recycling:paper'] == 'yes'
-                                  ? Icons.check_box
-                                  : Icons.check_box_outline_blank,
-                              color: beige,
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const SingleChildScrollView(
-                              child: PlanetSortText(
-                                  data: "Plastics Recycling",
-                                  textAlign: TextAlign.left),
-                            ),
-                            Icon(
-                              center['tags']['recycling:plastic'] == 'yes'
-                                  ? Icons.check_box
-                                  : Icons.check_box_outline_blank,
-                              color: beige,
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const SingleChildScrollView(
-                              child: PlanetSortText(
-                                  data: "Glass Recycling",
-                                  textAlign: TextAlign.left),
-                            ),
-                            Icon(
-                              center['tags']['recycling:glass_bottles'] == 'yes'
-                                  ? Icons.check_box
-                                  : Icons.check_box_outline_blank,
-                              color: beige,
-                            )
-                          ],
-                        ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                  onTap: () => {
+                                        launchUrlString(
+                                            "https://www.google.com/maps/search/?api=1&query=${center['lat']},${center['lon']}")
+                                      },
+                                  child: Text(
+                                    "${center['lat']}, ${center['lon']}",
+                                    style: const TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: Colors.blue,
+                                      fontFamily: 'RockNRoll',
+                                      color: Colors.blue,
+                                    ),
+                                  ))
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const SingleChildScrollView(
+                                child: PlanetSortText(
+                                    data: "Cans Recycling",
+                                    textAlign: TextAlign.left),
+                              ),
+                              Icon(
+                                center['tags']['recycling:cans'] == 'yes'
+                                    ? Icons.check_box
+                                    : Icons.check_box_outline_blank,
+                                color: beige,
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const SingleChildScrollView(
+                                child: PlanetSortText(
+                                    data: "Papers Recycling",
+                                    textAlign: TextAlign.left),
+                              ),
+                              Icon(
+                                center['tags']['recycling:paper'] == 'yes'
+                                    ? Icons.check_box
+                                    : Icons.check_box_outline_blank,
+                                color: beige,
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const SingleChildScrollView(
+                                child: PlanetSortText(
+                                    data: "Plastics Recycling",
+                                    textAlign: TextAlign.left),
+                              ),
+                              Icon(
+                                center['tags']['recycling:plastic'] == 'yes'
+                                    ? Icons.check_box
+                                    : Icons.check_box_outline_blank,
+                                color: beige,
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const SingleChildScrollView(
+                                child: PlanetSortText(
+                                    data: "Glass Recycling",
+                                    textAlign: TextAlign.left),
+                              ),
+                              Icon(
+                                center['tags']['recycling:glass_bottles'] ==
+                                        'yes'
+                                    ? Icons.check_box
+                                    : Icons.check_box_outline_blank,
+                                color: beige,
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                      actions: <Widget>[
+                        PlanetSortButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          label: 'Close',
+                        )
                       ],
                     ),
-                    actions: <Widget>[
-                      PlanetSortButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        label: 'Close',
-                      )
-                    ],
-                  ),
-                );
-              },
-              child: const Icon(Icons.recycling, color: green),
+                  );
+                },
+                child: const Icon(Icons.recycling, color: green),
+              ),
+            );
+          }).toList();
+          markers.add(Marker(
+            width: 80.0,
+            height: 80.0,
+            point: currentPosition!,
+            child: const Icon(
+              Icons.location_pin,
+              color: dark,
             ),
-          );
-        }).toList();
-        markers.add(Marker(
-          width: 80.0,
-          height: 80.0,
-          point: currentPosition!,
-          child: const Icon(
-            Icons.location_pin,
-            color: dark,
-          ),
-        ));
+          ));
+        });
       });
-    });
+    }
   }
 
   @override
