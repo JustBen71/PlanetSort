@@ -36,7 +36,7 @@ class _MapPageState extends State<MapPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 550,
+                height: 520,
                 width: 350,
                 child: LocationMapWidget(),
               )
