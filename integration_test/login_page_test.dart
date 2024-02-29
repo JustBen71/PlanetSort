@@ -12,7 +12,8 @@ void main() {
       await tester.pumpAndSettle();
       final Finder textFieldEmail = find.byKey(const ValueKey('email'));
       tester.enterText(textFieldEmail, "coucou@test.fr");
-      final PlanetSortTextField emailTextField = tester.widget(textFieldEmail) as PlanetSortTextField;
+      final PlanetSortTextField emailTextField =
+          tester.widget(textFieldEmail) as PlanetSortTextField;
       expect(emailTextField.controller.text, 'coucou@test.fr');
     });
   });
